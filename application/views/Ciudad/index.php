@@ -1,23 +1,24 @@
 <div class="card">
                         <div class="card-action">
                             Agregar una Zona
+                            <button class="waves-effect waves-light btn" onclick="load_page(8)"><i class="material-icons dp48">add</i></button>
                         </div>
     <div class="card-content">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s8">
-          <input   id="ciudad-des" type="text" class="validate">
-          <label for="ciudad-des">Descripci&oacute;n</label>
-        </div>
-        
-        <div class="input-field col s4">
-         
-        <a class="waves-effect waves-light btn">Guardar</a>
 
-        </div>
-      </div>
-     
-    </form>
+    <div id="ciudad-form" class="container">
+    </div>
+
+
+    <?php include("list.php"); ?>
 	<div class="clearBoth"></div>
   </div>
     </div>
+
+
+    <script src="assets/js/dataTables/jquery.dataTables.js" defer></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"defer></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>

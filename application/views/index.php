@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand waves-effect waves-dark" href="<?php base_url() ?>"><i class="large material-icons">track_changes</i> <strong>TITED</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="<?php base_url("index.php") ?>"><i class="large material-icons">track_changes</i> <strong>TITED</strong></a>
 				
 		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>
