@@ -15,10 +15,4 @@
     </div>
 
 
-    <script src="assets/js/dataTables/jquery.dataTables.js" defer></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"defer></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
+ 

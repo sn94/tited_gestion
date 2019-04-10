@@ -16,18 +16,64 @@ class Ciudad extends CI_Controller {
 	{
 		
 		$lista['lista'] = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom, ciudad.ciudad_readonly')->
-		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id')->order_by('ciudad.ciudad_readonly')->get()->result_object();
+		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_object();
+		 
 		//var_dump( $lista);
 		$this->load->view('Ciudad/index' ,  $lista);
 	}
 
 
 	public function create(){
-		$data = array(
-			'title' => 'My title',
-			'name' => 'My Name',
-			'date' => 'My date'
-	);
-		$sql= $this->db->insert('ciudad', $data);
-	}
+
+		//mostrar form
+			$this->load->helper("form");
+			$this->load->library("form_validation");
+
+		//settear reglas de validacion
+			$this->form_validation->set_rules("ciudad-des", "Ciudad,zona", "required");
+
+		//verificar la validacion
+		if( $this->form_validation->run() === FALSE ){
+			
+			$this->load->view('Ciudad/create'); 
+		}else{
+			$data = array(   'Ciudad_nom' =>  $this->input->post("ciudad-des") , "Ciudad_readonly"=>"0");
+			$sql= $this->db->insert('ciudad', $data);
+			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se agreg&oacute; una zona "));
+		}
+	 }
+
+
+	 public function edit(){
+		 	//mostrar form
+			 $this->load->helper("form");
+			 $this->load->library("form_validation");
+ 
+		 //settear reglas de validacion
+			 $this->form_validation->set_rules("ciudad-des", "Ciudad,zona", "required");
+ 
+		 //verificar la validacion
+		 if( $this->form_validation->run() === FALSE ){
+			 $ciu_obj= $this->db->get_where("ciudad", array("ciudad_id" => $this->input->get("ciudad_id"))  )->row();
+				
+			 $this->load->view('Ciudad/edit', array("data" =>  $ciu_obj )  ); 
+		 }else{
+			 $data = array(   'Ciudad_nom' =>  $this->input->post("ciudad-des")  );
+			 $this->db->where('ciudad_id', $this->input->post("ciudad-id"));
+			$this->db->update('ciudad', $data);
+			$this->load->view("Plantillas/success",  array("title"=>"Registro editado!", "message"=>"Haz editado un registro"));
+		 }
+		}
+
+
+	 public function delete(){
+	 
+		$id= $this->input->get("ciudad_id"); 
+		$sql= $this->db->delete('ciudad',  array('ciudad_id' => $id)  ) ;
+		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Zona/ciudad"));
+		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );
+	 }
+
+
+
 }

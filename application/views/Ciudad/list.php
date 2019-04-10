@@ -17,12 +17,13 @@
                 <td><?= $row->ciudad_nom?></td>
                 <td><?= $row->departamento_nom?></td> 
                 
-                <?php  if( !$row->ciudad_readonly ){ ?>
+                <?php  if( $row->ciudad_readonly!="1" ){ ?>
                     <td>
-                        <button class="btn-floating" onclick=""><i class="material-icons dp48">mode_edit</i></button>
+                        <a onclick="load_page(10, 'GET', {ciudad_id : <?= $row->ciudad_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        
                     </td>
                     <td>
-                        <button class="btn-floating" onclick=""><i class="material-icons dp48">delete</i></button>
+                        <a onclick="load_page(9, 'GET', {ciudad_id : <?= $row->ciudad_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                     </td>
 
                 <?php }else{ ?>
@@ -36,3 +37,11 @@
         </tbody>
     </table>
 </div>
+
+<script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable({
+                    "sort": false
+                });
+            });
+	</script> 

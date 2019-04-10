@@ -579,13 +579,20 @@
     <script src="assets/js/jquery.metisMenu.js"></script>
     <!-- Morris Chart Js -->
     <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js"></script>
+    <script src="assets/js/morris/morris.js?v=<?php round(microtime(true) * 1000);?>"></script>
 	
 	
 	<script src="assets/js/easypiechart.js"></script>
 	<script src="assets/js/easypiechart-data.js"></script>
 	
 	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	
+
+	
+	 <!-- DATATABLES -->
+	 <script src="assets/js/dataTables/jquery.dataTables.js" ></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        
 	
     <!-- Custom Js -->
 	<script src="assets/js/custom-scripts.js"></script>
