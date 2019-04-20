@@ -1,4 +1,4 @@
-<div class="table-responsive">
+ 
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
             <tr>
@@ -35,9 +35,7 @@
             </tr>
             <?php  } ?>
         </tbody>
-    </table>
-</div>
-
+    </table> 
 <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable({

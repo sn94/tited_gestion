@@ -1,5 +1,9 @@
-
-<?php echo validation_errors(); ?>
+<?php  
+if(validation_errors()){ ?>
+<div class="text-danger">
+<?=validation_errors() ?>
+</div>
+<?php }  ?>
 
 
 <?php  echo form_open("ciudad/create", array("name"=>"ciudad-form","class"=>"col s12")  ) ;?>

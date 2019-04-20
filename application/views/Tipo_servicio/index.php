@@ -1,23 +1,23 @@
 <div class="card">
                         <div class="card-action">
                             Agregar un Servicio
+                            <button class="waves-effect waves-light btn" onclick="load_page(16)"><i class="material-icons dp48">add</i></button>
                         </div>
     <div class="card-content">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s8">
-          <input   id="tipo-servicio-des" type="text" class="validate">
-          <label for="tipo-servicio-des">Descripci&oacute;n</label>
-        </div>
-        
-        <div class="input-field col s4">
-         
-        <a class="waves-effect waves-light btn">Guardar</a>
 
-        </div>
-      </div>
-     
-    </form>
+    <div id="tiposer-form" class="container m-0">
+    </div>
+
+
+    <a  href="#" onclick="load_page(19)"><i class="material-icons dp48">replay</i></a>     
+    
+    <div class="table-responsive"   id="tiposervicio-table">
+    <?php include("list.php"); ?>
+    </div>
+    
 	<div class="clearBoth"></div>
   </div>
     </div>
+
+
+ 

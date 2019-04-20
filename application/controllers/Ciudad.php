@@ -23,14 +23,27 @@ class Ciudad extends CI_Controller {
 	}
 
 
+	public function list()
+	{
+		
+		$lista['lista'] = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom, ciudad.ciudad_readonly')->
+		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_object();
+		 
+		//var_dump( $lista);
+		$this->load->view('Ciudad/list' ,  $lista);
+	}
+
+
+
 	public function create(){
 
+		
 		//mostrar form
 			$this->load->helper("form");
 			$this->load->library("form_validation");
 
 		//settear reglas de validacion
-			$this->form_validation->set_rules("ciudad-des", "Ciudad,zona", "required");
+			$this->form_validation->set_rules("ciudad-des", "Ciudad,zona", "required", array('required' => 'Ingrese una descripcion valida'));
 
 		//verificar la validacion
 		if( $this->form_validation->run() === FALSE ){
@@ -54,7 +67,8 @@ class Ciudad extends CI_Controller {
  
 		 //verificar la validacion
 		 if( $this->form_validation->run() === FALSE ){
-			 $ciu_obj= $this->db->get_where("ciudad", array("ciudad_id" => $this->input->get("ciudad_id"))  )->row();
+			$id= $this->input->get("ciudad_id") ? $this->input->get("ciudad_id") : $this->input->post("ciudad_id");
+			 $ciu_obj= $this->db->get_where("ciudad", array("ciudad_id" => $id)  )->row();
 				
 			 $this->load->view('Ciudad/edit', array("data" =>  $ciu_obj )  ); 
 		 }else{
@@ -75,5 +89,34 @@ class Ciudad extends CI_Controller {
 	 }
 
 
+
+
+
+
+
+
+
+
+
+
+	 public function buscador(){
+		$lista['lista'] = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom, ciudad.ciudad_readonly')->
+		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_object();
+		
+		 $this->load->view("Ciudad/buscador", $lista);
+	 }
+
+
+
+
+	 /****************************************************************************/
+
+	 public function list_json(){
+
+		$lista = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom')->
+		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_array();
+		
+		echo json_encode(  $lista);
+	 }
 
 }

@@ -17,6 +17,10 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+	<!-- JQUERY UI -->
+	<link rel="stylesheet" href="assets/css/jquery-ui.min.css" type='text/css'> 
+	
+
 </head>
 
 <body>
@@ -593,7 +597,11 @@
 	 <script src="assets/js/dataTables/jquery.dataTables.js" ></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
         
-	
+
+	<!-- jquery UI -->
+	<script src="assets/js/jquery-ui.min.js"></script>
+
+
     <!-- Custom Js -->
 	<script src="assets/js/custom-scripts.js"></script>
 	<script src="assets/js/myjs.js?v=<?php round(microtime(true) * 1000);?>"></script> 
