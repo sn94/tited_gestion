@@ -7,6 +7,7 @@ if(validation_errors()){ ?>
 
 
 
+
 <?php   echo form_open_multipart("personal/create", array("name"=>"personal-form","class"=>"col s12")  ) ;?>
 
 
@@ -25,15 +26,14 @@ if(validation_errors()){ ?>
     <label for="personal_ape">Apellidos</label>
   </div>
 </div>
-
+  
 <div class="row"> 
-<div class="input-field col s4">
-  <input type="hidden" name="Ciudad-id" />
-  <div class = "ui-widget">
-  <input name="Ciudad_id" type="text"  id="city-searcher">
-  </div>
-  <label for="Ciudad_id">Ciudad</label>
+
+<div class="input-field col s2">
+   <input type="text" class="validate datepicker"  name="Personal_fecha_nac"   >
+  <label for="Personal_fecha_nac">Fecha de nacimiento</label>
 </div>
+
 <div class="input-field col s2">
     <i class="material-icons prefix">phone</i>
     <input name="personal_tel" type="tel" class="validate">
@@ -44,6 +44,14 @@ if(validation_errors()){ ?>
       <input name="personal_cel" type="tel" class="validate">
       <label for="personal_cel">Celular</label>
 </div>
+
+<div class="input-field col s6">
+  <input type="hidden" name="Ciudad_id" value="" /> 
+  <input type="text" class="city-searcher"     />
+  <label for="" >Ciudad</label>
+</div>
+
+
 </div>
 
 
@@ -91,25 +99,16 @@ if(validation_errors()){ ?>
 
 
   <?php  echo form_close() ;?>
-
+ 
+ 
   <script>
-   $(document).ready(function () {
+   $( function () {
 
-   
-    
-  var cities= [];
-   $.getJSON( "ciudad/list_json", function( data ) {
+     
+    autocomplete_ciudades( "input[name=Ciudad_id]" );
+    $('.datepicker').pickadate( setting_date ) ;
 
-    data.forEach( ( ar)=>   cities.push( {  label: ar.ciudad_id, value: ar.ciudad_nom+", "+ar.departamento_nom } ) );
-    $("#city-searcher").autocomplete(   {source:    cities }    );
-
-});
-
-   
-
-   }) ;
-
-
+}); 
   
   
   </script>

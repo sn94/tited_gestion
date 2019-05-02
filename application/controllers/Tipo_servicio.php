@@ -87,4 +87,11 @@ class Tipo_servicio extends CI_Controller {
 	 }
 
 
+	 public function list_json(){
+		echo json_encode( $this->db->get("tipo_servicio"  )->result() );		
+	 }
+
+
+
+
 }

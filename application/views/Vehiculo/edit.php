@@ -13,17 +13,17 @@ if(validation_errors()){ ?>
       <div class="row">
         <div class="input-field col s4">
           <input   name="vehiculo_chapa" type="text" class="validate" value="<?= $data->Vehiculo_chapa?>">
-          <label for="vehiculo_chapa">Chapa</label>
+          <label for="vehiculo_chapa" class="active">Chapa</label>
         </div>
 
         <div class="input-field col s5">
           <input  name="vehiculo_chasis" type="text" class="validate" value="<?= $data->Vehiculo_chasis?>">
-          <label for="vehiculo_chasis">Chasis</label>
+          <label for="vehiculo_chasis" class="active">Chasis</label>
         </div>
 
         <div class="input-field col s3">
             <input  name="vehiculo_anio" type="text" class="validate" value="<?= $data->Vehiculo_anio?>">
-            <label for="vehiculo_anio">A&ntilde;o</label>
+            <label for="vehiculo_anio" class="active">A&ntilde;o</label>
           </div>
 
       </div>
@@ -31,12 +31,12 @@ if(validation_errors()){ ?>
       <div class="row">
         <div class="input-field col s6">
           <input   name="vehiculo_marca" type="text" class="validate" value="<?= $data->Vehiculo_marca?>">
-          <label for="vehiculo_marca">Marca</label>
+          <label for="vehiculo_marca" class="active">Marca</label>
         </div>
 
         <div class="input-field col s6">
           <input  name="vehiculo_modelo" type="text" class="validate"  value="<?= $data->Vehiculo_modelo?>">
-          <label for="vehiculo_modelo">Modelo</label>
+          <label for="vehiculo_modelo"  class="active">Modelo</label>
         </div>
       </div>
 

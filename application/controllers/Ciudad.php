@@ -99,18 +99,15 @@ class Ciudad extends CI_Controller {
 
 
 
-	 public function buscador(){
-		$lista['lista'] = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom, ciudad.ciudad_readonly')->
-		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_object();
-		
-		 $this->load->view("Ciudad/buscador", $lista);
+	 /****************************************************************************/
+
+	 public function get(  $id){
+		$data= $this->db->get_where( 'ciudad', array( 'ciudad_id'=> $this->input->get("ciudad-id")) )->row();
+		echo json_encode(  $data);
 	 }
 
 
-
-
-	 /****************************************************************************/
-
+	 
 	 public function list_json(){
 
 		$lista = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom')->

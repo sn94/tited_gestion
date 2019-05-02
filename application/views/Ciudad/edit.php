@@ -10,7 +10,7 @@
 
         <div class="input-field col s8">
           <input   name="ciudad-des" type="text" class="validate" value="<?= $data->Ciudad_nom?>" autofocus>
-          <label for="ciudad-des">Descripci&oacute;n</label>
+          <label for="ciudad-des" class="active">Descripci&oacute;n</label>
         </div>
         
         <div class="input-field col s4">

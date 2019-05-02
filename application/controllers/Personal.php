@@ -32,11 +32,7 @@ class Personal extends CI_Controller {
 	
 	public function create(){
 
-		/*$lista['lista'] = $this->db->select('ciudad.ciudad_id,ciudad.ciudad_nom,departamento.departamento_nom, ciudad.ciudad_readonly')->
-		from('ciudad')->join('departamento', 'ciudad.departamento_id=departamento.departamento_id', 'left')->order_by('ciudad.ciudad_readonly', "ASC")->get()->result_object();
-		
-		 $this->load->view("Ciudad/buscador", $lista);
-*/
+	 
 		//mostrar form
 			$this->load->helper("form");
 			$this->load->library("form_validation");
@@ -53,13 +49,18 @@ class Personal extends CI_Controller {
 			$this->load->view('Personal/create'); 
 		}else{
 
-			//subir la foto
-			$photo_data= $this->do_upload(); 
-
+			//subir la foto, cedula
+			$photo_data= $this->do_upload( "personal_foto1"); 
+			//subir la foto, registro de c.
+			$photo_data2= $this->do_upload( "personal_foto2"); 
+			//obtener los valores del resto de los campos
 			$data= $this->input->post(  NULL,  true);
+			//Verificar los datos que se guardaran
+			if( !array_key_exists( "error", $photo_data ) && !array_key_exists( "error", $photo_data2 )  ){
+				//Si existe un error en la subida
 
-			if( !array_key_exists( "error", $photo_data ) ){
 				$data['personal_foto1']= "./galeria/personal/".$photo_data['upload_data']['file_name'];
+				$data['personal_foto2']= "./galeria/personal/".$photo_data2['upload_data']['file_name'];
 			}
 			
  
@@ -71,34 +72,44 @@ class Personal extends CI_Controller {
 
 
 	 public function edit(){
-		 	//mostrar form
-			 $this->load->helper("form");
-			 $this->load->library("form_validation");
- 
-		 //settear reglas de validacion 
-		 $this->form_validation->set_rules("vehiculo_marca", "Marca", "required", array('required' => 'Indique la marca'));
-		 $this->form_validation->set_rules("vehiculo_chapa", "Chapa", "required", array('required' => 'Ingrese numero de chapa'));
-		 $this->form_validation->set_rules("vehiculo_anio", "A&ntilde;o", "required", array('required' => 'Indique el a&ntilde;o'));
+		 	
+		//mostrar form
+			$this->load->helper("form");
+			$this->load->library("form_validation");
 
- 
-		 //verificar la validacion
-		 if( $this->form_validation->run() === FALSE ){
+		//settear reglas de validacion
+			$this->form_validation->set_rules("personal_ci", "n&uacute;mero de c&eacute;dula", "required", array('required' => 'Indique el n&uacute;mero de c&eacute;dula'));
+			$this->form_validation->set_rules("personal_nom", "nombre", "required", array('required' => 'Ingrese los nombres'));
+			$this->form_validation->set_rules("personal_ape", "apellido", "required", array('required' => 'Indique los apellidos'));
+			///$this->form_validation->set_rules("vehiculo_foto", "Foto", "required", array('required' => 'Cargue una foto'));
 
+		//verificar la validacion
+		if( $this->form_validation->run() === FALSE ){
 			$id= $this->input->get("personal_id") ? $this->input->get("personal_id") : $this->input->post("personal_id");
-			$cli_obj= $this->db->get_where("personal", array("personal_id" => $id )  )->row();
-				
-			$this->load->view('Personal/edit', array("data" =>  $cli_obj )  ); 
-		 }else{
-
+			//consultar datos de personal y ciudad
+			$this->db->select('personal.personal_id,personal.personal_nom,personal.personal_ape,personal.personal_ci,personal.personal_cel,personal.personal_tel,personal.personal_dir,personal.personal_email,personal.personal_fecha_nac,personal.personal_foto1,personal.personal_foto2,ciudad.ciudad_id,ciudad.ciudad_nom');
+			$this->db->from('personal');
+			$this->db->join("ciudad", "ciudad.ciudad_id=personal.ciudad_id" ,"left");
+			$this->db->where('personal.personal_id', $id);  
+			$data= $this->db->get()->row(); 
 			
-			//subir la foto
-			$photo_data= $this->do_upload(); 
+			$this->load->view('Personal/edit',  array("data"=> $data)); 
+		}else{
 
+			//subir la foto, cedula
+			$photo_data= $this->do_upload( "personal_foto1"); 
+			//subir la foto, registro de c.
+			$photo_data2= $this->do_upload( "personal_foto2"); 
+			//obtener los valores del resto de los campos
 			$data= $this->input->post(  NULL,  true);
+			//Verificar los datos que se guardaran
+			if( !array_key_exists( "error", $photo_data ) && !array_key_exists( "error", $photo_data2 )  ){
+				//Si existe un error en la subida
 
-			if( !array_key_exists( "error", $photo_data ) ){
 				$data['personal_foto1']= "./galeria/personal/".$photo_data['upload_data']['file_name'];
+				$data['personal_foto2']= "./galeria/personal/".$photo_data2['upload_data']['file_name'];
 			}
+			
 			
 			 $this->db->where('personal_id', $this->input->post("personal_id"));
 			$this->db->update('personal', $data);
@@ -121,7 +132,7 @@ class Personal extends CI_Controller {
 
 
 
-	 private function do_upload()
+	 private function do_upload(  $fieldname)
 	 {
 			 $config['upload_path']          = './galeria/personal';
 			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -131,7 +142,7 @@ class Personal extends CI_Controller {
 
 			 $this->load->library('upload', $config);
 
-			 if ( ! $this->upload->do_upload('personal_foto1'))
+			 if ( ! $this->upload->do_upload(  $fieldname ))
 			 {
 					 $error = array('error' => $this->upload->display_errors()); return $error;
 			 }

@@ -137,4 +137,15 @@ class Vehiculo extends CI_Controller {
 	 }
 
 
+
+	 public function list_json(){
+		echo json_encode( $this->db->get("vehiculo"  )->result() );		
+	 }
+
+
+	 public function foto($id){
+		$veh_obj= $this->db->get_where("vehiculo", array("vehiculo_id" => $id )  )->row();
+		echo "<img src='".$veh_obj->Vehiculo_foto1."' class='img-responsive' />";
+	 }
+
 }

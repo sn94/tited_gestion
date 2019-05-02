@@ -13,7 +13,7 @@ if(validation_errors()){ ?>
 
         <div class="input-field col s8">
           <input   name="tiposervicio_des" type="text" class="validate" value="<?= $data->Tiposervicio_des?>" autofocus>
-          <label for="tiposervicio_des">Descripci&oacute;n</label>
+          <label for="tiposervicio_des" class="active">Descripci&oacute;n</label>
         </div>
         
         <div class="input-field col s4">
