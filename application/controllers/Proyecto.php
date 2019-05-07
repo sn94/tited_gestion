@@ -20,7 +20,26 @@ class Proyecto extends CI_Controller {
 
 
 	public function cuadrilla(){
-		$this->load->view(  'Proyecto/cuadrilla');
+		$this->load->library("form_validation");
+		$this->load->helper("form");
+		$this->form_validation->set_rules("personal_id[]", "Personal", "required",  array("required" => "Seleccione al menos un personal") );
+
+		if( $this->form_validation->run() === FALSE ){
+			//CONSULTAR TABLA PERSONAL
+			$data= $this->db->get("personal")->result();
+			$id_pro= $this->input->get("proyecto_id");
+			$this->load->view(  'Proyecto/cuadrilla',  array("list"=>  $data, "proyecto_id"=> $id_pro)  );
+		}else{
+			$pers_ids= $this->input->post("personal_id")   ;
+			$data["Proyecto_id"]=  $this->input->post("proyecto_id");
+			foreach( $pers_ids as $per){
+				$data["Personal_id"]=   $per;
+				//guardar
+				$sql= $this->db->insert('cuadrilla', $data);						
+			}
+			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se ha definido una cuadrilla! "));
+				
+		}	 
 	}
 
 

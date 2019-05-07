@@ -1,3 +1,11 @@
+<?php  
+if(validation_errors()){ ?>
+<div class="text-danger">
+<?=validation_errors() ?>
+</div>
+<?php }  ?>
+
+
 
 <?php  echo form_open("proyecto/create", array("name"=>"proyecto-form","class"=>"col s12")  ) ;?>
  

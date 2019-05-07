@@ -239,7 +239,7 @@
                                         <a href="#" onclick="load_page(6)">Nuevo Proyecto</a>
                                     </li>
                                     <li>
-                                        <a href="#" onclick="cargar(7)" >Gestionar Cuadrilla</a>
+                                        <a href="#" onclick="load_page(7)" >Gestionar Cuadrilla</a>
                                     </li>
                                     <li>
                                         <a href="#">Galer&iacute;a de proyectos</a>
