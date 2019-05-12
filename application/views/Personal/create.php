@@ -45,11 +45,13 @@ if(validation_errors()){ ?>
       <label for="personal_cel">Celular</label>
 </div>
 
-<div class="input-field col s6">
-  <input type="hidden" name="Ciudad_id" value="" /> 
-  <input type="text" class="city-searcher"     />
-  <label for="" >Ciudad</label>
-</div>
+<div class="col s4 city-searcher"> 
+        <label for="Ciudad_id"  >Ciudad</label>
+        <input   type="text" >
+        <input type="hidden"  name="Ciudad_id" />
+        
+      </div>
+
 
 
 </div>
@@ -72,14 +74,14 @@ if(validation_errors()){ ?>
       <div class="input-field col s6">
       <h5>Foto (C&eacute;dula de I.)</h5> 
       <input   name="personal_foto1" type="file" class="validate" onchange="show_loaded_image(event,'#personal-foto-ced')" />
-      <div  class="input-field col s6" id="personal-foto-ced" style="min-height: 100px; min-width: 100px;"> 
+      <div  class="input-field col s6" id="personal-foto-ced" style='max-height: 100px; max-width: 100px;'> 
       </div>
       </div>
 
       <div class="input-field col s6">
           <h5>Foto (Registro de Conducir)</h5>
             <input   name="personal_foto2" type="file" class="validate" onchange="show_loaded_image(event,'#personal-foto-reg')"> 
-            <div  class="input-field col s6" id="personal-foto-reg" style="min-height: 100px; min-width: 100px;"> 
+            <div  class="input-field col s6" id="personal-foto-reg" style='max-height: 100px; max-width: 100px;'> 
               </div> 
           </div> 
 

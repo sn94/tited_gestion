@@ -18,31 +18,8 @@ class Proyecto extends CI_Controller {
 		$this->load->view('Proyecto/index' ,  array( "lista"=> $lista)      );
 	}
 
-
-	public function cuadrilla(){
-		$this->load->library("form_validation");
-		$this->load->helper("form");
-		$this->form_validation->set_rules("personal_id[]", "Personal", "required",  array("required" => "Seleccione al menos un personal") );
-
-		if( $this->form_validation->run() === FALSE ){
-			//CONSULTAR TABLA PERSONAL
-			$data= $this->db->get("personal")->result();
-			$id_pro= $this->input->get("proyecto_id");
-			$this->load->view(  'Proyecto/cuadrilla',  array("list"=>  $data, "proyecto_id"=> $id_pro)  );
-		}else{
-			$pers_ids= $this->input->post("personal_id")   ;
-			$data["Proyecto_id"]=  $this->input->post("proyecto_id");
-			foreach( $pers_ids as $per){
-				$data["Personal_id"]=   $per;
-				//guardar
-				$sql= $this->db->insert('cuadrilla', $data);						
-			}
-			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se ha definido una cuadrilla! "));
-				
-		}	 
-	}
-
-
+	
+	
 
 
 	
@@ -63,7 +40,7 @@ class Proyecto extends CI_Controller {
 
 
 	public function list()
-	{
+	{//list view
 		$lista= $this->list_from_db();	
 		$this->load->view('Proyecto/list' , array( "lista"=> $lista)   );
 	}
@@ -112,6 +89,34 @@ class Proyecto extends CI_Controller {
 		}
 	 }
 
+
+	 
+
+	public function cuadrilla(){
+		$this->load->library("form_validation");
+		$this->load->helper("form");
+		$this->form_validation->set_rules("personal_id[]", "Personal", "required",  array("required" => "Seleccione al menos un personal") );
+
+		if( $this->form_validation->run() === FALSE ){
+			//CONSULTAR TABLA PERSONAL
+			$data= $this->db->get("personal")->result();
+			$id_pro= $this->input->get("proyecto_id")?$this->input->get("proyecto_id"):$this->input->post("proyecto_id") ;
+			$this->load->view(  'Proyecto/cuadrilla/index',  array("list"=>  $data, "proyecto_id"=> $id_pro)  );
+		}else{
+			$pers_ids= $this->input->post("personal_id")   ;
+			$data["Proyecto_id"]=  $this->input->post("proyecto_id");
+			foreach( $pers_ids as $per){
+				$data["Personal_id"]=   $per;
+				//guardar
+				$sql= $this->db->insert('cuadrilla', $data);						
+			}
+			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se ha definido una cuadrilla! "));
+				
+		}	 
+	}
+
+
+ 
 
 	 public function edit(){
 		 	
@@ -173,6 +178,29 @@ class Proyecto extends CI_Controller {
 
 
 
+
+
+
+	 private function do_upload(  $fieldname)
+	 {
+			 $config['upload_path']          = './galeria/proyectos';
+			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
+			 $config['max_size']             = 100;
+			 $config['max_width']            = 2048;
+			 $config['max_height']           = 1536;
+
+			 $this->load->library('upload', $config);
+
+			
+			 if ( ! $this->upload->do_upload(  $fieldname ))
+			 {
+					 $error = array('error' => $this->upload->display_errors()); return $error;
+			 }
+			 else
+			 {
+					 $data = array('upload_data' => $this->upload->data()); return $data;
+			 }
+	 }
 
 
 

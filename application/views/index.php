@@ -19,7 +19,7 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
-	 
+	<link rel="stylesheet" href="assets/css/lightgallery.min.css"> 
 	
 	
 
@@ -237,12 +237,15 @@
                                 <ul class="nav nav-third-level">
                                     <li>
                                         <a href="#" onclick="load_page(6)">Nuevo Proyecto</a>
-                                    </li>
+									</li>
+									
+									<li>
+                                        <a href="#" onclick="load_page(35)">Buscar en Galer&iacute;a</a>
+									</li>
+									
+ 
                                     <li>
-                                        <a href="#" onclick="load_page(7)" >Gestionar Cuadrilla</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Galer&iacute;a de proyectos</a>
+                                        <a href="#">Galer&iacute;a de proyectos recientes</a>
                                     </li>
 
                                 </ul>
@@ -600,6 +603,8 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	<!-- Jquery Chart Js -->
 	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	 <!-- gallery -->
+	 <script src="assets/js/lightGallery.js"></script>
 	 <!-- DATATABLES -->
 	 <script src="assets/js/dataTables/jquery.dataTables.js" ></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>

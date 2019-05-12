@@ -1,3 +1,19 @@
+<div class="header"> 
+          <h1 class="page-header" id="big-form-title">
+                          Veh&iacute;culos
+          </h1>
+						<ol class="breadcrumb" id="my-breadcrumb">
+					  <li><a href="#">Inicio</a></li>
+					  <li><a href="#">Adm. de referenciales</a></li>
+					  <li class="active">Agregar un Veh&iacute;culo</li>
+					</ol> 
+									
+</div>
+
+
+<div id="page-inner">
+
+
 <div class="card">
                         <div class="card-action">
                             Agregar un Veh&iacute;culo
@@ -22,3 +38,6 @@
 
 
  
+
+    
+    </div><!-- END PAGE INNER -->

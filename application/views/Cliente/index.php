@@ -1,3 +1,17 @@
+<div class="header"> 
+          <h1 class="page-header" id="big-form-title">
+                            Ciudades
+          </h1>
+						<ol class="breadcrumb" id="my-breadcrumb">
+					  <li><a href="#">Inicio</a></li>
+					  <li><a href="#">Adm. de referenciales</a></li>
+					  <li class="active">Agregar un cliente</li>
+					</ol> 
+									
+</div>
+
+
+<div id="page-inner">
 <div class="card">
                         <div class="card-action">
                             Agregar nuevo cliente
@@ -23,3 +37,7 @@
 	<div class="clearBoth"></div>
   </div>
     </div>
+
+
+    
+    </div><!-- END PAGE INNER -->

@@ -7,6 +7,8 @@ if(validation_errors()){ ?>
 
 
 
+
+
 <?php  echo form_open("proyecto/create", array("name"=>"proyecto-form","class"=>"col s12")  ) ;?>
  
 
@@ -24,7 +26,7 @@ if(validation_errors()){ ?>
      
     <div class="input-field col s2">
           <input name="proyecto_fecha_ini" type="text" class="validate datepicker">
-          <label for="proyecto_fecha_ini"   >Fecha de nicio</label>
+          <label for="proyecto_fecha_ini"   >Fecha de inicio</label>
         </div>
         <div class="input-field col s2">
           <input name="proyecto_fecha_fin" type="text" class="validate datepicker">
@@ -80,7 +82,10 @@ if(validation_errors()){ ?>
 
       </form>
 
-     
+
+
+
+
   <script>
    $( function () {
 
