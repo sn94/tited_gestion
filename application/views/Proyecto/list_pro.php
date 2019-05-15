@@ -17,6 +17,17 @@
         <div class="card-action">  Ver un &aacute;lbum </div>
 
             <div class="card-content" >
+    
+    <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Personales de la cuadrilla</h4>
+      <div  id="lista-cuadrilla"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">OK</a>
+    </div>
+  </div> 
+
 
     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
@@ -33,6 +44,7 @@
             </tr>
         </thead>
         <tbody>
+              
             <?php foreach( $lista as $row){  ?>
 
             <tr class="odd gradeX">
@@ -41,9 +53,11 @@
                 <td><?= $row->Empresa_razon ?></td> 
                 <td><?= $row->Tiposervicio_des ?></td> 
                 <td><?= $row->Proyecto_estado  ?></td> 
-                <td>     <a onclick="load_page(7, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                <td>      
+                        <!--   -->
+                        <a  onclick="load_page(321, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" class="modal-trigger" href="#modal1"><i class="material-icons" style="font-size:20px;">visibility</i></a> 
                  </td> 
-                 <td>     <a onclick="load_page(36, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                 <td>     <a  href='/tited_gestion/galeria/list/<?=$row->Proyecto_id?>'><i class="material-icons" style="font-size:20px;">visibility</i></a> 
                  </td>
                 <td>
                         <a onclick="load_page(26, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
@@ -52,7 +66,7 @@
                         <a onclick="load_page(25, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
-                
+              <!-- onclick="load_page(36, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" -->  
                 
             </tr>
             <?php  } ?>
@@ -70,5 +84,14 @@
                 $('#dataTables-example').dataTable({
                     "sort": false
                 });
+
+                $('.modal').modal();
+
+
             });
+
+ 
+
+
+
 	</script> 

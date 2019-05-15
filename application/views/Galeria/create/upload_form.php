@@ -1,5 +1,5 @@
     
-<?php  echo form_open_multipart('proyecto/galeria', array('name'=> 'galeria-form1','class'=>'col s12')  ) ;?>
+<?php  echo form_open_multipart('galeria/create', array('name'=> 'galeria-form1','class'=>'col s12')  ) ;?>
 
 <input type='hidden' name='proyecto_id'  value='<?= $proyecto_id  ?>'  />
  

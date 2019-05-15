@@ -40,23 +40,16 @@ class Galeria extends CI_Controller {
 
 
 	
-	private function list_from_db(){
-		$id= $this->input->get("proyecto_id");
+	private function list_from_db(  $id){ 
 		$lista= $this->db->get_where("galeria_proyectos", array("proyecto_id"=> $id )  )->result();
 		return $lista;
 	}
 
+ 
 
-	public function search()
+	public function list($proyecto_id)
 	{//list view
-		$lista= $this->list_projects();	
-		$this->load->view('Galeria/list_pro' , array( "lista"=> $lista)   );
-	}
-
-
-	public function list()
-	{//list view
-		$lista= $this->list_from_db();	
+		$lista= $this->list_from_db( $proyecto_id );	
 		$this->load->view('Galeria/list' , array( "lista"=> $lista)   );
 	}
 
@@ -82,6 +75,8 @@ class Galeria extends CI_Controller {
 				if( !array_key_exists( "error", $photo_data )  ){
 					//Si existe un error en la subida
 						$data['Galeria_foto']= "./galeria/proyectos/".$photo_data['upload_data']['file_name'];
+				 }else{
+					 print "hubo error alsubir";
 				 }
 
 				//guardar en bd
@@ -115,15 +110,15 @@ class Galeria extends CI_Controller {
 	 {
 			 $config['upload_path']          = './galeria/proyectos';
 			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
-			 $config['max_size']             = 100;
-			 $config['max_width']            = 2048;
-			 $config['max_height']           = 1536;
+			 $config['max_size']             = 500;
+			 $config['max_width']            = 3072;//1024 * 3
+			 $config['max_height']           = 3072; 
 
 			 $this->load->library('upload', $config);
 
 			
 			 if ( ! $this->upload->do_upload(  $fieldname ))
-			 {
+			 { 
 					 $error = array('error' => $this->upload->display_errors()); return $error;
 			 }
 			 else

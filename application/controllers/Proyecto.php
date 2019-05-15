@@ -45,6 +45,11 @@ class Proyecto extends CI_Controller {
 		$this->load->view('Proyecto/list' , array( "lista"=> $lista)   );
 	}
 
+	public function search()
+	{//list view
+		$lista= $this->list_from_db();	
+		$this->load->view('Proyecto/list_pro' , array( "lista"=> $lista)   );
+	}
 
 	
 	
@@ -117,6 +122,20 @@ class Proyecto extends CI_Controller {
 
 
  
+
+
+
+	public function ver_cuadrilla( ){
+		$proyecto_id= $this->input->get("proyecto_id");
+		$data= $this->db->select("personal.Personal_ci,personal.Personal_nom,personal.Personal_ape")->from("personal")
+		->join("cuadrilla", "personal.personal_id=cuadrilla.personal_id")
+		->join("proyectos","proyectos.proyecto_id=cuadrilla.proyecto_id")->where("proyectos.proyecto_id", $proyecto_id )->get()->result();
+
+		$this->load->view("Proyecto/Cuadrilla/lista", array("lista"=> $data)  );
+	}
+
+
+
 
 	 public function edit(){
 		 	

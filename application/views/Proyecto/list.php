@@ -24,7 +24,7 @@
                 <td><?= $row->Proyecto_estado  ?></td> 
                 <td>     <a onclick="load_page(7, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
                  </td> 
-                 <td>     <a onclick="load_page(33, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                 <td>     <a onclick="load_page(34, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
                  </td>
                 <td>
                         <a onclick="load_page(26, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>

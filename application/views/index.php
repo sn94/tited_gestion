@@ -19,9 +19,8 @@
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
-	<link rel="stylesheet" href="assets/css/lightgallery.min.css"> 
-	
-	
+
+	 
 
 </head>
 
@@ -240,7 +239,7 @@
 									</li>
 									
 									<li>
-                                        <a href="#" onclick="load_page(35)">Buscar en Galer&iacute;a</a>
+                                        <a href="#" onclick="load_page(33)">Buscar en Galer&iacute;a</a>
 									</li>
 									
  
@@ -603,8 +602,7 @@
 	<script src="assets/js/easypiechart-data.js"></script>
 	<!-- Jquery Chart Js -->
 	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
-	 <!-- gallery -->
-	 <script src="assets/js/lightGallery.js"></script>
+	  
 	 <!-- DATATABLES -->
 	 <script src="assets/js/dataTables/jquery.dataTables.js" ></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
