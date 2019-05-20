@@ -250,15 +250,23 @@
                                 </ul>
 
 							</li>
-						
-					<li>
-                        <a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Ventas</a>
-					</li>
+					
+							<li>
+                                <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Comprobantes<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#" onclick="load_page(36)">Factura-venta</a>
+									</li>
+									
+									<li>
+                                        <a href="#" onclick="load_page(33)">Factura-compra</a>
+									</li> 
 
+                                </ul>
 
-					<li>
-                        <a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Compras</a>
-                    </li>
+							</li>
+
+				 
                     <li>
                         <a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Cuenta Bancaria</a>
                     </li>

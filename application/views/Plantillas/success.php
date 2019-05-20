@@ -1,6 +1,9 @@
-<div class="alert alert-success">
+<div class="container">
+    <div class="alert alert-success">
 
-    <strong><?= $title ?></strong>
-    <?=  $message ?>
+        <strong><?= $title ?></strong>
+        <?=  $message ?>
+
+    </div>
 
 </div>
