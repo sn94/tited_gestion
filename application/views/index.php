@@ -13,7 +13,7 @@
     <!-- Morris Chart Styles-->
     <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="assets/css/custom-styles.css?v=<?php round(microtime(true) * 1000);?>" rel="stylesheet" />
 	 <!-- AUTOCOMPLETE-->
 	 <link href="assets/css/awesomplete.css" rel="stylesheet" />
     <!-- Google Fonts-->
@@ -235,17 +235,13 @@
                                 <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Proyectos t&eacute;cnicos<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#" onclick="load_page(6)">Nuevo Proyecto</a>
+                                        <a href="#" onclick="load_page(proyecto.pro_index)">Nuevo Proyecto</a>
 									</li>
 									
 									<li>
-                                        <a href="#" onclick="load_page(33)">Buscar en Galer&iacute;a</a>
+                                        <a href="#" onclick="load_page(proyecto.pro_list)">Buscar en Galer&iacute;a</a>
 									</li>
-									
- 
-                                    <li>
-                                        <a href="#">Galer&iacute;a de proyectos recientes</a>
-                                    </li>
+									 
 
                                 </ul>
 
@@ -255,21 +251,40 @@
                                 <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Comprobantes<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#" onclick="load_page(36)">Factura-venta</a>
+                                        <a href="#" onclick="load_page( venta.v_index)">Nueva Factura-venta</a>
 									</li>
 									
 									<li>
-                                        <a href="#" onclick="load_page(33)">Factura-compra</a>
+                                        <a href="#" onclick="load_page(compra.c_add_g)">Nueva Factura-compra</a>
 									</li> 
+
+									<li>
+                                        <a href="/tited_gestion/venta/list" >Buscar facturas de venta</a>
+									</li> 
+
+									<li>
+                                        <a href="/tited_gestion/compra/list" >Buscar facturas de compra</a>
+									</li> 
+
 
                                 </ul>
 
 							</li>
 
+							<li>
+                                <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Cuenta bancaria<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#" onclick="load_page(cta_cte.cta_add_g)">Nuevo movimiento</a>
+									</li>
+									<li>
+                                        <a href="#" onclick="load_page(cta_cte.cta_list)">Libro banco</a>
+									</li>
+								</ul>
+
+							</li>
 				 
-                    <li>
-                        <a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Cuenta Bancaria</a>
-                    </li>
+                    
                     
                     <li>
                         <a href="table.html" class="waves-effect waves-dark"><i class="fa fa-table"></i> Caja Chica</a>
@@ -617,6 +632,7 @@
  <!-- AUTOCOMPLETE -->
  <script src="assets/js/awesomplete.min.js"></script>
     <!-- Custom Js -->
+	<script src="assets/js/tited_routes.js?v=<?php round(microtime(true) * 1000);?>"></script>
 	<script src="assets/js/custom-scripts.js"></script>
 	<script src="assets/js/myjs.js?v=<?php round(microtime(true) * 1000);?>"></script> 
  

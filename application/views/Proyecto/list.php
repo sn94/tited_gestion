@@ -22,15 +22,15 @@
                 <td><?= $row->Empresa_razon ?></td> 
                 <td><?= $row->Tiposervicio_des ?></td> 
                 <td><?= $row->Proyecto_estado  ?></td> 
-                <td>     <a onclick="load_page(7, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                <td>     <a onclick="load_page( proyecto.pro_cuad_g,  {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
                  </td> 
-                 <td>     <a onclick="load_page(34, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                 <td>     <a onclick="load_page(proyecto.pro_gale_g, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
                  </td>
                 <td>
-                        <a onclick="load_page(26, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        <a onclick="load_page( proyecto.pro_edit_g, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                 </td>
                 <td>
-                        <a onclick="load_page(25, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                        <a onclick="load_page( proyecto.pro_del, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
                 

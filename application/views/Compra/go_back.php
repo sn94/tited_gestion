@@ -1,7 +1,7 @@
 <div class="container">
 
 
-<a class="waves-effect waves-light btn"  onclick="load_page(36)">Registrar otra factura</a> 
+<a class="waves-effect waves-light btn"  onclick="load_page( compra.c_add_g)">Registrar otra factura</a> 
 
 
 </div>

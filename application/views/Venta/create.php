@@ -1,9 +1,17 @@
 
+<style type="text/css">
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left:20%;
+}
+</style>
 
 
 
 <div class="header"> 
-          <h1 class="page-header" id="big-form-title">    Servicios </h1>
+          <h1 class="page-header" id="big-form-title">    Facturas </h1>
 					<ol class="breadcrumb" id="my-breadcrumb">
 					  <li><a href="#">Inicio</a></li>
 					  <li><a href="#">Comprobantes</a></li>
@@ -35,8 +43,8 @@ if(validation_errors()){ ?>
 <div class="row">
 <!-- campos ocultos --> 
 <input type='hidden' name='proyecto_id'  value='<?= $proyecto_id ? $proyecto_id : set_value('proyecto_id') ?>'  />
-<input type="hidden" name="venta_estado" value="C"> 
-<input type="hidden" name="venta_fecha_reg" > 
+<input type="hidden" name="personal_id" value="2"   > 
+<input type="hidden" name="venta_fecha_reg"   > 
 <input type="hidden" name="venta_hora_reg" >
 
 
@@ -45,7 +53,7 @@ if(validation_errors()){ ?>
 <!-- numero de factura-->
 <div class="input-field col s2"> <input  name="venta_nro_fac"  value="<?= set_value('venta_nro_fac') ?>" type="text" class="validate"> <label for="venta_nro_fac">Nro. de Factura:</label></div>
 <!-- tipo de venta-->
-<div class="input-field col s2"><p><input name="venta_tipo"  checked="<?= set_value('venta_tipo')=='CO'? true: false ?>" type="radio" checked id="r_cont" value="CO"><label for="r_cont"/>Contado</label></p><p><input name="venta_tipo"  checked="<?= set_value('venta_tipo')=='CR'? true: false ?>"  type="radio" id="r_cred" value="CR"><label for="r_cred">Cr&eacute;dito</label></p></div>
+<div class="input-field col s2"><p><input name="venta_tipo"   type="radio"   id="r_cont" value="CO"><label for="r_cont"/>Contado</label></p><p><input name="venta_tipo"  type="radio" id="r_cred" value="CR"><label for="r_cred">Cr&eacute;dito</label></p></div>
 <!-- total factura-->
 <div class="input-field col s2"><input  name="venta_total"  value="<?= set_value('venta_total') ?>" type="text" class="validate"><label for="venta_total">Total:</label></div>
 </div><!-- END row -->
@@ -54,11 +62,19 @@ if(validation_errors()){ ?>
 
 <div class="row">
 <!-- foto-->
-<div class="input-field col s6"><input   name="venta_foto" type="file" class="validate"  onchange="show_loaded_image( event , '#venta_foto')"> </div><div  class="input-field col s6" id="venta_foto" style="max-height: 100px; max-width: 100px;"></div>
+<!-- foto-->
+<div class="file-field input-field col s4">
+      <div class="btn">
+        <span>Foto</span> <input type="file"   name="venta_foto"   onchange="show_loaded_image( event , '#venta_foto')"> 
+        </div>
+      <div class="file-path-wrapper">  <input class="file-path validate" type="text">  </div>
+</div>
+
+<div  class="input-field col s6" id="venta_foto" style="max-height: 100px; max-width: 100px;"></div>
 </div><!-- END row -->
 
 <div class="row"><!-- boton de envio-->
-<div class="input-field col s4"><button type="button"  onclick= "load_page(37, 'POST', this)" class="waves-effect waves-light btn" >Guardar</button></div>
+<div class="input-field col s4"><button type="button"  onclick= "beforeSend(  this)" class="waves-effect waves-light btn" >Guardar</button></div>
 </div><!-- END row     -->
 
 
@@ -83,6 +99,23 @@ if(validation_errors()){ ?>
 
 
 <script>
+
+
+
+//asegurar la carga de la foto
+function beforeSend(  context){
+
+if(  $( $(context).prop("form") ).find("input[type=file]").val()   )
+  load_page( venta.v_add_p, context);
+else{
+  
+var toastContent = $('<h1>Cargue una imagen</h1>');
+
+Materialize.toast( toastContent, 2000);
+} 
+
+}
+
    $( function () {
 
      //asignar fecha actual
@@ -90,6 +123,9 @@ if(validation_errors()){ ?>
        new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate() ) ;
 
  
+       $("form[name=venta-form] input[name=venta_hora_reg]").val( 
+        new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
+
     $('.datepicker').pickadate( setting_date ) ;
 
 }); 

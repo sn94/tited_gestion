@@ -5,7 +5,7 @@
 						<ol class="breadcrumb" id="my-breadcrumb">
 					  <li><a href="#">Inicio</a></li>
 					  <li><a href="#">Comprobantes</a></li>
-					  <li class="active">Registrar comprobante de venta</li>
+					  <li class="active">Registrar comprobante de compra</li>
 					</ol> 
 									
 </div>
@@ -14,11 +14,11 @@
 <div id="page-inner">
 
 <div class="card">
-        <div class="card-action">  Favor indicar el proyecto (al cual se factura)  </div>
+        <div class="card-action">  Factura de compra  </div>
 
             <div class="card-content" >
  
-            <?php  include("list_pro.php"); ?>
+            <?php  include("create.php"); ?>
             
 
             </div> <!-- End card content -->

@@ -7,7 +7,7 @@ class Venta extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->database();
+		$this->load->model("Venta_model");
 	}
 
 
@@ -40,13 +40,13 @@ class Venta extends CI_Controller {
 
 
 	
-	private function list_from_db(  $id){ 
-		$lista= $this->db->get_where("galeria_proyectos", array("proyecto_id"=> $id )  )->result();
-		return $lista;
-	}
+	 
+ 
 
- 
- 
+	public function list(){
+		$d= $this->Venta_model->list();
+		$this->load->view("Venta/list",   array("lista"=>    $d  )    );
+	}
 
 
 	public function create(){ 
@@ -69,64 +69,27 @@ class Venta extends CI_Controller {
 			if( $this->form_validation->run()===  FALSE){ 
 				$this->load->view("Venta/create");
 			}else{
-				$data= $this->input->post(  NULL,  true);  
-			
-				//guardar foto en galeria
-				$photo_data= $this->do_upload(  "venta_foto"); //retorna el nombre del archivo
-				if( !array_key_exists( "error", $photo_data )  ){
-						//Si existe un error en la subida
-						$data['Venta_foto']= "./galeria/ventas/".$photo_data['upload_data']['file_name'];
-						//guardar en bd
-						$sql= $this->db->insert('venta', $data);	 
+				
+				$estado= $this->Venta_model->add();
+				if( $estado  ){
 						//preparar mensaje json
 						$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz registrado un comprobante de venta! "));
 						$this->load->view("Venta/go_back");
 				 }else{
 					 //var_dump(  $photo_data); 
-					 $this->load->view("Plantillas/failure",  array("title"=>"Existen errores en el formulario!", "message"=>" Revise los campos. Mensaje del error->".$photo_data["error"] )   );
+					 $this->load->view("Plantillas/failure",  array("title"=>"Existen errores en el formulario!", "message"=>" Revise los campos." )   );
 					 $this->load->view("Venta/create");
 				 }
 			}
 		}		
 			
 	}
+ 
 
-	 public function delete(){
-	 
-		$id= $this->input->get("personal_id"); 
-		$sql= $this->db->delete('personal',  array('personal_id' => $id)  ) ;
-		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Personal"));
-		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );
-	 }
+
 
 
 	 
-
-
-
-
-
-
-	 private function do_upload(  $fieldname)
-	 {
-			 $config['upload_path']          = './galeria/proyectos';
-			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
-			 $config['max_size']             = 500;
-			 $config['max_width']            = 3072;//1024 * 3
-			 $config['max_height']           = 3072; 
-
-			 $this->load->library('upload', $config);
-
-			
-			 if ( ! $this->upload->do_upload(  $fieldname ))
-			 { 
-					 $error = array('error' => $this->upload->display_errors()); return $error;
-			 }
-			 else
-			 {
-					 $data = array('upload_data' => $this->upload->data()); return $data;
-			 }
-	 }
 
 
 

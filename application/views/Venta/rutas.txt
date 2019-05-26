@@ -1,0 +1,14 @@
+var venta= {
+
+v_index: {url:  "/tited_gestion/venta/index", method:"GET", async: true },
+v_add_g: {url:  "/tited_gestion/venta/create", method: "GET" ,  async: true},
+v_add_p: {url:  "/tited_gestion/venta/create", method: "POST",  async: true },
+v_list:  {url:  "/tited_gestion/venta/list",  method: "GET",  async: true}
+
+};
+    
+   
+    
+   
+
+];

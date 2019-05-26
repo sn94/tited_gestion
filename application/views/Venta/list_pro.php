@@ -14,16 +14,19 @@
               
             <?php foreach( $lista as $row){  ?>
 
-            <tr class="odd gradeX">
-                <td><?= $row->Proyecto_fecha?></td>
-                <td><?= $row->Personal_nom." ".$row->Personal_ape ?></td>
-                <td><?= $row->Empresa_razon ?></td> 
-                <td><?= $row->Tiposervicio_des ?></td> 
-                <td><?= $row->Proyecto_estado  ?></td> 
-                <td>      
-                     <a  onclick="load_page(37 , 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )"  href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
-                 </td>    
-            </tr>
+                <?php  if(  $row->Proyecto_estado  !="TERMINADO") {?>
+                    <tr class="odd gradeX">
+                    <td><?= $row->Proyecto_fecha?></td>
+                    <td><?= $row->Personal_nom." ".$row->Personal_ape ?></td>
+                    <td><?= $row->Empresa_razon ?></td> 
+                    <td><?= $row->Tiposervicio_des ?></td> 
+                    <td><?= $row->Proyecto_estado  ?></td> 
+                    <td> 
+                    <a  onclick="load_page( venta.v_add_g, {proyecto_id : <?= $row->Proyecto_id?>} )"  href="#"><i class="material-icons" style="font-size:20px;">settings</i></a> 
+                    </td>    
+                    </tr>
+                <?php } ?>
+
             <?php  } ?>
         </tbody>
     </table>

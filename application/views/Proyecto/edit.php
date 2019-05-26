@@ -4,7 +4,7 @@
 
 
 
-<?php  echo form_open("proyecto/create", array("name"=>"proyecto-form","class"=>"col s12")  ) ;?>
+<?php  echo form_open("proyecto/edit", array("name"=>"proyecto-form","class"=>"col s12")  ) ;?>
  
 
        <input name="proyecto_fecha" type="hidden"   >
@@ -57,7 +57,7 @@
     </div>
 
     <div class="col s2">
-        <button type="button" class="waves-effect waves-light btn" onclick= "load_page( proyecto.pro_add_p, this,'#proyecto-form')">Guardar</button>
+        <button type="button" class="waves-effect waves-light btn" onclick= "load_page( proyecto.pro_edit_p, this,'#proyecto-form')">Guardar</button>
      </div>
   </div>
 

@@ -55,15 +55,15 @@
                 <td><?= $row->Proyecto_estado  ?></td> 
                 <td>      
                         <!--   -->
-                        <a  onclick="load_page(321, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" class="modal-trigger" href="#modal1"><i class="material-icons" style="font-size:20px;">visibility</i></a> 
+                        <a  onclick="load_page(proyecto.pro_cuad_g, {proyecto_id : <?= $row->Proyecto_id?>} )" class="modal-trigger" href="#modal1"><i class="material-icons" style="font-size:20px;">visibility</i></a> 
                  </td> 
                  <td>     <a  href='/tited_gestion/galeria/list/<?=$row->Proyecto_id?>'><i class="material-icons" style="font-size:20px;">visibility</i></a> 
                  </td>
                 <td>
-                        <a onclick="load_page(26, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        <a onclick="load_page( proyecto.pro_edit_g, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                 </td>
                 <td>
-                        <a onclick="load_page(25, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                        <a onclick="load_page(proyecto.pro_del, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
               <!-- onclick="load_page(36, 'GET', {proyecto_id : <?= $row->Proyecto_id?>} )" -->  
