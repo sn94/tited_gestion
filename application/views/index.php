@@ -235,14 +235,11 @@
                                 <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Proyectos t&eacute;cnicos<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#" onclick="load_page(proyecto.pro_index)">Nuevo Proyecto</a>
+                                        <a href="#" onclick="load_page(proyecto.pro_index)">Gestionar Proyectos</a>
 									</li>
-									
 									<li>
-                                        <a href="#" onclick="load_page(proyecto.pro_list)">Buscar en Galer&iacute;a</a>
-									</li>
-									 
-
+                                        <a href="#" onclick="load_page(proyecto.pro_add_g)">Nuevo proyecto</a>
+									</li>  
                                 </ul>
 
 							</li>

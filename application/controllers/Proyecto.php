@@ -108,13 +108,13 @@ class Proyecto extends CI_Controller {
 
 	public function ver_cuadrilla( ){
 		$data= $this->proyecto_model->list_cuadrilla();
-		$this->load->view("Proyecto/Cuadrilla/lista", array("lista"=> $data)  );
+		$this->load->view("Proyecto/Cuadrilla/list", array("list"=> $data)  );
 	}
 
 
 
 
-	 public function edit(){
+	 public function edit( ){
 		 //mostrar form
 		 $this->load->helper("form");
 		 $this->load->library("form_validation");
@@ -128,10 +128,12 @@ class Proyecto extends CI_Controller {
 	 //verificar la validacion
 
 		 if( $this->form_validation->run() === FALSE ){
-			 $this->load->view('Proyecto/create'); 
+			$id= $this->input->get("proyecto_id") ? $this->input->get("proyecto_id") : $this->input->post("proyecto_id");
+			$data= $this->db->get_where("proyectos", array("proyecto_id" => $id )  )->row();
+			 $this->load->view('Proyecto/edit', array("data"=> $data ) ); 
 		 }else{
-			 $this->proyecto_model->add(); 
-			 $this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"El proyecto ha sido dado de alta "));
+			 $this->proyecto_model->edit(); 
+			 $this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Los datos de proyecto han sido modificado "));
 		 }
 	 
 
@@ -139,11 +141,10 @@ class Proyecto extends CI_Controller {
 
 
 	 public function delete(){
-	 
-		$id= $this->input->get("personal_id"); 
-		$sql= $this->db->delete('personal',  array('personal_id' => $id)  ) ;
-		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Personal"));
-		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );
+		$id= $this->input->get("proyecto_id") ;
+			
+		$sql= $this->db->delete('proyectos',  array('proyecto_id' => $id)  ) ;
+		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Proyecto")); 
 	 }
 
 

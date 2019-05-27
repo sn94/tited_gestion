@@ -23,6 +23,18 @@ class Proyecto_model extends CI_Model {
     }
 
 
+		public function edit(){
+        
+			//obtener los valores del resto de los campos
+			$data= $this->input->post(  NULL,  true);
+			$this->db->where("proyecto_id",  $this->input->post(  "proyecto_id"));
+			$sql= $this->db->update('proyectos', $data); 
+	
+			}
+
+
+
+
 		public function cuadrilla(){
 			$pers_ids= $this->input->post("personal_id")   ;
 			$data["Proyecto_id"]=  $this->input->post("proyecto_id");
@@ -34,11 +46,11 @@ class Proyecto_model extends CI_Model {
 
 
 		public function list_cuadrilla(){
-		return $proyecto_id= $this->input->get("proyecto_id");
+		$proyecto_id= $this->input->get("proyecto_id");
 		$data= $this->db->select("personal.Personal_ci,personal.Personal_nom,personal.Personal_ape")->from("personal")
 		->join("cuadrilla", "personal.personal_id=cuadrilla.personal_id")
 		->join("proyectos","proyectos.proyecto_id=cuadrilla.proyecto_id")->where("proyectos.proyecto_id", $proyecto_id )->get()->result();
-
+		return $data;
 
 		}
 
@@ -60,10 +72,27 @@ class Proyecto_model extends CI_Model {
 		}
 
 	public function list(){
-		$lista= $this->db->select('proyectos.Proyecto_id,proyectos.Proyecto_fecha_ini,proyectos.Proyecto_fecha_fin,
-		proyectos.Proyecto_hora_ini,proyectos.Proyecto_hora_fin,proyectos.Proyecto_fecha,proyectos.Proyecto_estado,
+		$lista= $this->db->select("proyectos.Proyecto_id,proyectos.Proyecto_fecha_ini,proyectos.Proyecto_fecha_fin,
+		proyectos.Proyecto_hora_ini,proyectos.Proyecto_hora_fin,proyectos.Proyecto_fecha,
+		(case proyectos.Proyecto_estado when 'P' then 'PENDIENTE' when 'A' then 'ANULADO' when 'C' then 'CONCRETADO' END) as Proyecto_estado ,
 		ciudad.Ciudad_nom, vehiculo.Vehiculo_marca,vehiculo.Vehiculo_modelo, cliente.Empresa_razon, tipo_servicio.Tiposervicio_des, 
-		personal.Personal_id,personal.Personal_nom,personal.Personal_ape')
+		personal.Personal_id,personal.Personal_nom,personal.Personal_ape")
+		->from('proyectos')
+		->join('ciudad', 'ciudad.ciudad_id=proyectos.ciudad_id', 'left')
+		->join('vehiculo','vehiculo.vehiculo_id=proyectos.vehiculo_id', 'left')
+		->join('cliente','cliente.Empresa_id=proyectos.Empresa_id', 'left')
+		->join('tipo_servicio','tipo_servicio.tiposervicio_id=proyectos.tiposervicio_id', 'left')
+		->join('personal','personal.personal_id=proyectos.personal_id', 'left') 
+		->get()->result_object();
+		return $lista;
+	}
+    
+	public function list_pendings(){
+		$lista= $this->db->select("proyectos.Proyecto_id,proyectos.Proyecto_fecha_ini,proyectos.Proyecto_fecha_fin,
+		proyectos.Proyecto_hora_ini,proyectos.Proyecto_hora_fin,proyectos.Proyecto_fecha,
+		(case proyectos.Proyecto_estado when 'P' then 'PENDIENTE' when 'A' then 'ANULADO' when 'C' then 'CONCRETADO' END) as Proyecto_estado ,
+		ciudad.Ciudad_nom, vehiculo.Vehiculo_marca,vehiculo.Vehiculo_modelo, cliente.Empresa_razon, tipo_servicio.Tiposervicio_des, 
+		personal.Personal_id,personal.Personal_nom,personal.Personal_ape")
 		->from('proyectos')
 		->join('ciudad', 'ciudad.ciudad_id=proyectos.ciudad_id', 'left')
 		->join('vehiculo','vehiculo.vehiculo_id=proyectos.vehiculo_id', 'left')
@@ -74,8 +103,6 @@ class Proyecto_model extends CI_Model {
 		->get()->result_object();
 		return $lista;
 	}
-    
-
 
 
     

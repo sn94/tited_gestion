@@ -26,9 +26,10 @@
         <div class="card-content">
 
         <div id="cuadrilla-form" class="container m-0">
+        <?php  include("create.php") ?>
         </div>
 
-      <?php  include("create.php") ?>
+      
 
 
         </div> <!-- End card content -->

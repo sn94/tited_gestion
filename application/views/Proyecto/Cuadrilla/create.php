@@ -14,7 +14,7 @@ if(validation_errors()){ ?>
          
              <div class="table-responsive">
             
-                  <button type="button" class="waves-effect waves-light btn mb-3" onclick= "load_page( 32, 'POST', this)">Guardar</button>
+                  <button type="button" class="waves-effect waves-light btn mb-3" onclick= "load_page( proyecto.pro_cuad_p, this, '#cuadrilla-form')">Guardar</button>
                  <div style="min-height: 15px;"></div>
  
 

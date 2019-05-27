@@ -7,7 +7,7 @@
 						<ol class="breadcrumb" id="my-breadcrumb">
 					  <li><a href="#">Inicio</a></li>
 					  <li><a href="#">Proyectos</a></li>
-					  <li class="active">Crear</li>
+					  <li class="active">Gestionar proyectos</li>
 					</ol> 
 									
 </div>
@@ -16,21 +16,16 @@
 <div id="page-inner">
 
 <div class="card">
-                        <div class="card-action">
-                            Nuevo proyecto
-                            <button class="waves-effect waves-light btn" onclick="load_page(proyecto.pro_add_g, {},'#proyecto-form')"><i class="material-icons dp48">add</i></button>
-                        
-                        </div>
-                        <div class="card-content">
-    
-    
-    
-    <div id="proyecto-form" class="container m-0">
+    <div class="card-action">
+      Gestionar proyectos
     </div>
-  
+    <div class="card-content">
 
-<a  href="#" onclick="load_page(proyecto.pro_list,{},'#proyecto-table')"><i class="material-icons dp48">replay</i></a>                
+    <div class="alert alert-success" id="list-project-msg"></div>
+
+    <a  href="#" onclick="load_page(proyecto.pro_list,{},'#proyecto-table')"><i class="material-icons dp48">replay</i></a>                
     
+
     <div class="table-responsive" id="proyecto-table">
     <?php
     include("list.php");
