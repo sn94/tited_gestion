@@ -16,7 +16,7 @@
 <div class="card">
                         <div class="card-action">
                             Agregar nuevo personal
-                            <button class="waves-effect waves-light btn" onclick="load_page(24)"><i class="material-icons dp48">add</i></button>
+                            <button class="waves-effect waves-light btn" onclick="load_page(personal.personal_add_g, {}, '#personal-form')"><i class="material-icons dp48">add</i></button>
                         
                         </div>
                         <div class="card-content">
@@ -25,7 +25,7 @@
     </div>
 
 
-    <a  href="#" onclick="load_page(27)"><i class="material-icons dp48">replay</i></a>                
+    <a  href="#" onclick="load_page(  personal.personal_list, {}, '#personal-table')"><i class="material-icons dp48">replay</i></a>                
     
     <div class="table-responsive" id="personal-table">
     <?php

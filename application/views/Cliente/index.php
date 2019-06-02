@@ -15,7 +15,7 @@
 <div class="card">
                         <div class="card-action">
                             Agregar nuevo cliente
-                            <button class="waves-effect waves-light btn" onclick="load_page(12)"><i class="material-icons dp48">add</i></button>
+                            <button class="waves-effect waves-light btn" onclick="load_page( cliente.cliente_add_g, {}, '#cliente-form')"><i class="material-icons dp48">add</i></button>
                         
                         </div>
                         <div class="card-content">
@@ -26,7 +26,7 @@
     </div>
 
 
-    <a  href="#" onclick="load_page(15)"><i class="material-icons dp48">replay</i></a>                
+    <a  href="#" onclick="load_page(  cliente.cliente_list, {}, '#cliente-table')"><i class="material-icons dp48">replay</i></a>                
     
     <div class="table-responsive" id="cliente-table">
     <?php

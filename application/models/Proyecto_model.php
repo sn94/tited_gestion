@@ -9,7 +9,7 @@ class Proyecto_model extends CI_Model {
 
     public function __construct(){
 
-
+				parent::__construct();
         $this->load->database();
 
     }
@@ -32,7 +32,11 @@ class Proyecto_model extends CI_Model {
 	
 			}
 
-
+			public function delete(){
+				$id= $this->input->get("proyecto_id");
+				$this->db->where('proyecto_id', $id);
+				$sql= $this->db->update('proyectos',  array(  'Proyecto_estado' => "A")  ) ;
+			}
 
 
 		public function cuadrilla(){
@@ -64,6 +68,7 @@ class Proyecto_model extends CI_Model {
 			
 			if( !array_key_exists( "error", $photo_data )  ){
 					//guardar venta en bd
+				//	$data['Galeria_foto']= "./galeria/proyectos/".$photo_data['upload_data']['file_name'];
 					$sql= $this->db->insert('galeria_proyectos', $data);	 
 					return 1;
 			}else{

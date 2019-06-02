@@ -2,11 +2,11 @@
 
 <div class="header"> 
           <h1 class="page-header" id="big-form-title">
-                            Cuenta Bancaria
+                            Caja chica
           </h1>
 						<ol class="breadcrumb" id="my-breadcrumb">
 					  <li><a href="#">Inicio</a></li>
-					  <li><a href="#">Cuenta Bancaria</a></li>
+					  <li><a href="#">Caja Chica</a></li>
 					  <li class="active">B&uacute;squedas</li>
 					</ol> 
 									
@@ -35,17 +35,17 @@
             $val_e=0;  $val_s= 0;$saldo= 0;
 
             foreach( $lista as $row){ 
-                $val_e+=  $row->Cuenta_mov =="E"  ? (int)$row->Cuenta_monto : 0;
-                $val_s+=  $row->Cuenta_mov =="S"  ? (int)$row->Cuenta_monto : 0;
+                $val_e+=  $row->Caja_mov =="E"  ? (int)$row->Caja_monto : 0;
+                $val_s+=  $row->Caja_mov =="S"  ? (int)$row->Caja_monto : 0;
                 $saldo=  $val_e - $val_s; 
             ?>
 
             <tr class="odd gradeX">
                 <td><?= $row->Personal_nom. " ".  $row->Personal_ape?></td>
-                <td><?= $row->Cuenta_obs?></td>
-                <td><?= $row->Cuenta_fecha?></td> 
-                <td>  <?=  $row->Cuenta_mov =="E"  ? $row->Cuenta_monto : "*****" ?>   </td>
-                <td> <?=  $row->Cuenta_mov =="S"  ? $row->Cuenta_monto : "*****" ?> </td> 
+                <td><?= $row->Caja_obs?></td>
+                <td><?= $row->Caja_fecha?></td> 
+                <td>  <?=  $row->Caja_mov =="E"  ? $row->Caja_monto : "*****" ?>   </td>
+                <td> <?=  $row->Caja_mov =="S"  ? $row->Caja_monto : "*****" ?> </td> 
                 <td>  <?=  $saldo ?> </td>
             </tr>
 

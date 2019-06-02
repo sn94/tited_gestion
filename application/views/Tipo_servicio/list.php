@@ -15,11 +15,11 @@
                 <td><?= $row->Tiposervicio_id?></td>
                 <td><?= $row->Tiposervicio_des?></td> 
                 <td>
-                    <a onclick="load_page(18, 'GET', {Tiposervicio_id : <?= $row->Tiposervicio_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                    <a onclick="load_page( tiposervicio.tiposer_edit_g, {Tiposervicio_id : <?= $row->Tiposervicio_id?>},'#tiposer-form' )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                         
                 </td>
                 <td>
-                    <a onclick="load_page(17, 'GET', {Tiposervicio_id : <?= $row->Tiposervicio_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                    <a onclick="load_page( tiposervicio.tiposer_del,  {Tiposervicio_id : <?= $row->Tiposervicio_id?>}, '#page-wrapper', {alert:'Seguro que quiere borrarlo?'} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td> 
                 
             </tr>

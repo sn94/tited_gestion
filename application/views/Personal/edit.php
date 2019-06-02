@@ -94,7 +94,7 @@ if(validation_errors()){ ?>
 <div class="row">
 <div class="input-field col s4">
 
-<button type="button" class="waves-effect waves-light btn" onclick= "load_page(26, 'POST', this)">Guardar</button>
+<button type="button" class="waves-effect waves-light btn" onclick= "load_page( personal.personal_edit_p this, '#personal-form')">Guardar</button>
 
   </div>
   </div>

@@ -29,6 +29,11 @@ class Personal extends CI_Controller {
 	}
 
 
+	public function list_json(){
+		$lista = $this->db->get('Personal')->result();
+		echo json_encode(  $lista);
+	}
+
 	
 	public function create(){
 

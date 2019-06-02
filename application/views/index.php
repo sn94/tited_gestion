@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TITED</title> 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="assets/css/font_google.css" rel="stylesheet">
 	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
 	 <!-- AUTOCOMPLETE-->
 	 <link href="assets/css/awesomplete.css" rel="stylesheet" />
     <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='assets/css/font_google2.css' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
 
 	 
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand waves-effect waves-dark" href="<?php base_url("index.php") ?>"><i class="large material-icons">track_changes</i> <strong>TITED</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="/tited_gestion/welcome"><i class="large material-icons">track_changes</i> <strong>TITED</strong></a>
 				
 		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>
@@ -43,7 +43,7 @@
 				<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown4"><i class="fa fa-envelope fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>				
 				<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown3"><i class="fa fa-tasks fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
 				<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown2"><i class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>John Doe</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b><?= $this->session->has_userdata("usuario")?$this->session->userdata("usuario") : ""?></b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -52,7 +52,7 @@
 </li>
 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 </li> 
-<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+<li><a href="/tited_gestion/sign/out"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 </li>
 </ul>
 <ul id="dropdown2" class="dropdown-content w250">
@@ -281,38 +281,55 @@
 
 							</li>
 				 
-                    
-                    
-                    <li>
-                        <a href="table.html" class="waves-effect waves-dark"><i class="fa fa-table"></i> Caja Chica</a>
-                    </li>
+							<li>
+                                <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Caja Chica<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#" onclick="load_page(cajachi.caja_add_g)">Nuevo movimiento</a>
+									</li>
+									<li>
+                                        <a href="#" onclick="load_page(cajachi.caja_list)">Libro Caja</a>
+									</li>
+								</ul>
+
+							</li> 
                    
 
                     <li>
                         <a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i> Adm. Referenciales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#" onclick="load_page(1)">Tipo de servicio</a>
+                                <a href="#" onclick="load_page(tiposervicio.tiposer_index)">Tipo de servicio</a>
                             </li>
                             <li>
-                                <a href="#" onclick="load_page(2)">Ciudades, zonas</a>
+                                <a href="#" onclick="load_page(ciudad.ciudad_index)">Ciudades, zonas</a>
 							</li>
 							<li>
-                                <a href="#" onclick="load_page(3)">Veh&iacute;culos</a>
+                                <a href="#" onclick="load_page(vehiculo.vehiculo_index)">Veh&iacute;culos</a>
 							</li>
 							<li>
-                                <a href="#" onclick="load_page(4)">Clientes</a>
+                                <a href="#" onclick="load_page(cliente.cliente_index)">Clientes</a>
 							</li>
 							<li>
-                                <a href="#" onclick="load_page(5)">Recursos humanos</a>
+                                <a href="#" onclick="load_page(personal.personal_index)">Recursos humanos</a>
                             </li>
                             
                         </ul>
 					</li>
 					
 					<li>
-                        <a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Permisos del sistema </a>
-					</li>
+                        <a href="#" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>Usuarios<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#" onclick="load_page(user.us_index)">Gestionar usuarios</a>
+									</li> 
+									
+									<li>
+                                        <a href="#" onclick="load_page(permisos.perm_index)">Gestionar permisos</a>
+									</li>
+								</ul>
+
+					</li> 
 					
                      
                 </ul>

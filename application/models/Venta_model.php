@@ -1,15 +1,10 @@
 <?php
 
 class Venta_model extends CI_Model {
-
-    public $title;
-    public $content;
-    public $date;
-
-
+ 
     public function __construct(){
 
-
+        parent::__construct();
         $this->load->database();
 
     }
@@ -26,8 +21,10 @@ class Venta_model extends CI_Model {
             $sql= $this->db->insert('venta', $data);	
             //actualizar cuenta banc.
             $sql= $this->db->insert('cuenta_banc', 
-            array("Cuenta_mov" =>"E", "Cuenta_monto"=>$data['venta_total'], "Cuenta_fecha"=>"CURRENT_DATE",
-            "Cuenta_fecha_reg"=>"CURRENT_DATE", "Cuenta_hora_reg"=>"CURRENT_TIME", "Personal_id"=> $data['personal_id']));
+            array("Cuenta_mov" =>"E", "Cuenta_monto"=>$data['venta_total'],
+            "Cuenta_obs"=> "Cobro",
+             "Cuenta_fecha"=> $data['venta_fecha_reg'],
+            "Cuenta_fecha_reg"=> $data['venta_fecha_reg'], "Cuenta_hora_reg"=> $data['venta_hora_reg'], "Personal_id"=> $data['personal_id']));
             //cambiar estado de proyecto a COBRADO
             $this->db->set("Proyecto_estado", "C");
             $this->db->where('Proyecto_id', $data['proyecto_id']);

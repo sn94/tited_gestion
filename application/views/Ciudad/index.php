@@ -16,7 +16,7 @@
 <div class="card">
                         <div class="card-action">
                             Agregar una Zona
-                            <button class="waves-effect waves-light btn" onclick="load_page(8)"><i class="material-icons dp48">add</i></button>
+                            <button class="waves-effect waves-light btn" onclick="load_page(ciudad.ciudad_add_g , {}, '#ciudad-form')"><i class="material-icons dp48">add</i></button>
                         </div>
     <div class="card-content">
 
@@ -24,7 +24,7 @@
     </div>
 
 
-    <a  href="#" onclick="load_page(11)"><i class="material-icons dp48">replay</i></a>     
+    <a  href="#" onclick="load_page(  ciudad.ciudad_list, {}, '#ciudad-table')"><i class="material-icons dp48">replay</i></a>     
     
     <div class="table-responsive"   id="ciudad-table">
     <?php include("list.php"); ?>

@@ -18,14 +18,16 @@
                      </tbody>
                  </table>
              </div>
-             <script>
+
+
+<script>
 
 
 var galery_indeX= 1;
 
-var gen_form= function(){
+function gen_form(){
     let form="<form action='/galeria/create' name='galeria-form"+galery_indeX+"'   enctype='multipart/form-data' method='post' accept-charset='utf-8'>";
-    form=form+"<input type='hidden' name='proyecto_id'  value='<?= $proyecto_id  ?> '  />";
+    form=form+"<input type='hidden' name='proyecto_id'  value='<?=  $proyecto_id  ?>'  />";
     form= form+"<div class='row'><div class='col-md-6'><div  id='galeria_foto"+galery_indeX+"' style='max-height: 100px; max-width: 100px;'></div>";
     form=form+"<input   name='galeria_foto' type='file'  onchange='show_loaded_image( event , '#galeria_foto1')'></div>";
     form=form+"<div class='col-md-4'><input type='text'  name='galeria_des' /> <button type='button'  onclick='subir_foto(this)'><i class='material-icons' style='font-size:20px;'>forward_5</i></button>";
@@ -33,6 +35,7 @@ var gen_form= function(){
     form=form+"<button type='button'  onclick='agregar_foto()'><i class='material-icons' style='font-size:20px;'>queue</i></button></div>";
     form= form+"</form>";   return  form;
 };
+
 
 var agregar_foto= function(){
     galery_indeX=galery_indeX+1;
@@ -57,7 +60,7 @@ var quitar_foto= function( contx){
 
 var subir_foto= function( contx){    
       let form= $(  contx.parentNode.parentNode ).find("td form")[0];
-      load_page( 33, 'POST',    contx); 
+      load_page( proyectos.pro_gale_p,  contx, "#galeria-form", {alert:"Guardar foto en galeria?"}); 
     
 };
 

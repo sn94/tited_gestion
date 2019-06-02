@@ -92,16 +92,19 @@ class Proyecto extends CI_Controller {
 	public function galeria(){
 
 		$this->load->helper("form");
-		if( $this->input->method()=="get"){
-			$this->load->view("Galeria/create/create");
+		
+		//get
+		if( $this->input->method() == "get"){
+			$id_pro= $this->input->get("proyecto_id")? $this->input->get("proyecto_id"):$this->input->post("proyecto_id") ;
+			$this->load->view(  'Galeria/create/create',  array(  "proyecto_id"=> $id_pro)  );
+		
 		}else{
-			if($this->proyecto_model->galeria()){
-				$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Foto agregada a galeria! "));
-			}else{
-				$this->load->view("Plantillas/failure",  array("title"=>"Error al grabar!", "message"=>"Es posible que algunas caracteristicas del archivo no estan permitidas "));
 			
-			}
-		}
+			$this->proyecto_model->galeria();
+	
+			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz agregado una foto al &aacute;lbum de proyecto! "));
+		}		
+			
 		
 	}
 
@@ -141,9 +144,8 @@ class Proyecto extends CI_Controller {
 
 
 	 public function delete(){
-		$id= $this->input->get("proyecto_id") ;
-			
-		$sql= $this->db->delete('proyectos',  array('proyecto_id' => $id)  ) ;
+		
+		$this->proyecto_model->delete();
 		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Proyecto")); 
 	 }
 

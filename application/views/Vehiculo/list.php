@@ -17,10 +17,10 @@
                 <td><?= $row->Vehiculo_marca.','.$row->Vehiculo_modelo ?></td>
                 <td><?= $row->Vehiculo_anio ?></td> 
                 <td>
-                        <a onclick="load_page(22, 'GET', {vehiculo_id : <?= $row->Vehiculo_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        <a onclick="load_page( vehiculo.vehiculo_edit_g, {vehiculo_id : <?= $row->Vehiculo_id?>}, '#vehiculo-form' )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                 </td>
                 <td>
-                        <a onclick="load_page(21, 'GET', {vehiculo_id : <?= $row->Vehiculo_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                        <a onclick="load_page( vehiculo.vehiculo_del, {vehiculo_id : <?= $row->Vehiculo_id?>}, '#page-wrapper' , {alert:'Seguro que quiere borrarlo?' }   )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
                 

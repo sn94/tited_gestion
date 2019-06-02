@@ -55,7 +55,7 @@ if(validation_errors()){ ?>
       
       <div class="row">
       <div class="input-field col s4">
-        <button class="waves-effect waves-light btn" type="button" onclick= "load_page(12, 'POST', this)" >Guardar</button>
+        <button class="waves-effect waves-light btn" type="button" onclick= "load_page( cliente.cliente_add_p, this, '#cliente-form')" >Guardar</button>
         </div>
         </div>
 

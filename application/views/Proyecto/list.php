@@ -48,7 +48,7 @@
                     <?php  if($row->Proyecto_estado !='CONCRETADO'){ ?> <a onclick="load_page( proyecto.pro_edit_g, {proyecto_id : <?= $row->Proyecto_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a> <?php } ?>
                  </td>
                 <td>
-                    <?php  if($row->Proyecto_estado !='CONCRETADO'){ ?>  <a onclick="load_page(proyecto.pro_del, {proyecto_id : <?= $row->Proyecto_id?>}, '#list-project-msg', {alert:'Seguro que quiere borrar este registro?'} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a> <?php } ?>
+                    <?php  if($row->Proyecto_estado !='CONCRETADO'){ ?>  <a onclick="load_page(proyecto.pro_del, {proyecto_id : <?= $row->Proyecto_id?>}, '#list-project-msg', {alert:'Seguro que quiere anular este registro?'} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a> <?php } ?>
                 </td> 
             </tr>
             <?php  } ?>

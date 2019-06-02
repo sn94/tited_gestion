@@ -17,10 +17,10 @@
                 <td><?= $row->Personal_nom ?></td>
                 <td><?= $row->Personal_ape ?></td> 
                 <td>
-                        <a onclick="load_page(26, 'GET', {personal_id : <?= $row->Personal_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        <a onclick="load_page( personal.personal_edit_g,  {personal_id : <?= $row->Personal_id?>}, '#personal-form' )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                 </td>
                 <td>
-                        <a onclick="load_page(25, 'GET', {personal_id : <?= $row->Personal_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                        <a onclick="load_page( personal.personal_del,  {personal_id : <?= $row->Personal_id?>} , '#page-wrapper', { alert: 'Seguro que quiere borrarlo?'})" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
                 

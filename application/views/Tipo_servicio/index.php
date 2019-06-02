@@ -16,7 +16,7 @@
 <div class="card">
                         <div class="card-action">
                             Agregar un Servicio
-                            <button class="waves-effect waves-light btn" onclick="load_page(16)"><i class="material-icons dp48">add</i></button>
+                            <button class="waves-effect waves-light btn" onclick="load_page(tiposervicio.tiposer_add_g, {}, '#tiposer-form')"><i class="material-icons dp48">add</i></button>
                         </div>
     <div class="card-content">
 
@@ -24,7 +24,7 @@
     </div>
 
 
-    <a  href="#" onclick="load_page(19)"><i class="material-icons dp48">replay</i></a>     
+    <a  href="#" onclick="load_page(tiposervicio.tiposer_list, {}, '#tiposervicio-table')"><i class="material-icons dp48">replay</i></a>     
     
     <div class="table-responsive"   id="tiposervicio-table">
     <?php include("list.php"); ?>

@@ -92,7 +92,7 @@ if(validation_errors()){ ?>
 <div class="row">
 <div class="input-field col s4">
 
-<button type="button" class="waves-effect waves-light btn" onclick= "load_page(24, 'POST', this)">Guardar</button>
+<button type="button" class="waves-effect waves-light btn" onclick= "load_page( personal.personal_add_p, this, '#personal-form')">Guardar</button>
 
   </div>
   </div>
@@ -107,7 +107,7 @@ if(validation_errors()){ ?>
    $( function () {
 
      
-    autocomplete_ciudades( "input[name=Ciudad_id]" );
+    autocomplete_ciudades();
     $('.datepicker').pickadate( setting_date ) ;
 
 }); 

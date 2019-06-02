@@ -15,7 +15,7 @@
         
         <div class="input-field col s4">
          
-        <button type="button" class="waves-effect waves-light btn" onclick= "load_page(10, 'POST', this)">Guardar</button>
+        <button type="button" class="waves-effect waves-light btn" onclick= "load_page( ciudad.ciudad_edit_p, this , '#ciudad-form')">Guardar</button>
 
         </div>
       </div>

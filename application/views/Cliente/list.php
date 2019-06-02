@@ -17,10 +17,10 @@
                 <td><?= $row->Empresa_ruc?></td>
                 <td><?= $row->Empresa_tel ? $row->Empresa_tel : "*****" ?></td> 
                 <td>
-                        <a onclick="load_page(14, 'GET', {empresa_id : <?= $row->Empresa_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
+                        <a onclick="load_page( cliente.cliente_edit_g, {empresa_id : <?= $row->Empresa_id?>}, '#cliente-form' )" href="#"><i class="material-icons" style="font-size:20px;">mode_edit</i></a>
                 </td>
                 <td>
-                        <a onclick="load_page(13, 'GET', {empresa_id : <?= $row->Empresa_id?>} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
+                        <a onclick="load_page( cliente.cliente_del,   {empresa_id : <?= $row->Empresa_id?>}, '#page-wrapper', { alert:' Seguro que quiere borrarlo?'} )" href="#"><i class="material-icons" style="font-size:20px;">delete</i></a>
                 </td>
  
                 
