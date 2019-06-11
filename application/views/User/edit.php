@@ -11,16 +11,16 @@ if(validation_errors()){ ?>
  
 <div class="row">
         <div class="input-field col s4">
-          <input   name="usuario_nick" type="text" class="validate" value="<?= $data->Usuario_nick ?>">
-          <label for="usuario_nick" class="active">Nick:</label>
+          <input   name="Usuario_nick" type="text" class="validate" value="<?= $data->Usuario_nick ?>">
+          <label for="Usuario_nick" class="active">Nick:</label>
         </div>
         <div class="input-field col s3">
-          <input name="usuario_key" type="password" class="validate" value="<?= $data->Usuario_key ?>">
-          <label for="usuario_key" class="active">Clave:</label>
+          <input name="Usuario_key" type="password" class="validate" value="<?= $data->Usuario_key ?>">
+          <label for="Usuario_key" class="active">Clave:</label>
         </div>
          
          <input   name="personal_id" type="hidden" value="<?= $data->Personal_id ?>">
-         <input   name="usuario_id" type="hidden" value="<?= $data->Usuario_id ?>"> 
+         <input   name="Usuario_id" type="hidden" value="<?= $data->Usuario_id ?>"> 
       </div>
 
        

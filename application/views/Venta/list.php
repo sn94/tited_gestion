@@ -13,19 +13,38 @@
       <link rel="stylesheet" href="../assets/css/lightgallery_style.css">
 
   
+      <style>
+
+        body{
+          margin: 30px;
+          border: 1px #3F51B5 solid;
+        }
+      </style>
+
 </head>
 
 <body>
 
   
 <div class="container-fluid">
-      <h3>Facturas de venta</h3>
+
+    <h1 class="display-4">FACTURAS DE VENTA</h1>  <a href="/tited_gestion" class="btn btn-primary">Volver</a>
+   
+    
+
+
   <div class="row">
 
     <div class="col-sm-8">
-    
-<div class="demo-gallery" id="demo-gallery">
+      <div class="demo-gallery" id="demo-gallery">
   
+
+      <br>
+      <?php    if( !$lista ){ ?>
+        <div class="alert alert-success col col-md-4"> <h4>Sin fotos</h4> </div>
+      <?php }  ?>
+
+
       <ul id="lightgallery">
        
        <?php   foreach( $lista as $row){ ?>
@@ -42,14 +61,7 @@
   
 </ul>     
     </div> </div>  <!-- end of demo-gallery -->   
-      
-      <div class="col-sm-4">
-         
-      <a href="/tited_gestion" class="btn btn-primary">Volver</a>
-
-
-
-      </div>
+    
       
 </div>      <!--end -->
 </div>     <!-- end of row -->

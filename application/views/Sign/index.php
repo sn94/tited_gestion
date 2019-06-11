@@ -7,7 +7,7 @@
   
   
   
-      <link rel="stylesheet" href="<?= base_url('assets/css_login/style.css') ?>">
+      <link rel="stylesheet" href="<?= base_url('assets/css_login/style.css?v='. round(microtime(true) * 1000)) ?>">
 
   
 </head>
@@ -15,14 +15,9 @@
 <body>
 
   <div class="login-page">
-  <div class="form"> 
+  <div class="form"   > 
 
-    <form action="sign/in" class="login-form" method="post">
-      <input  name="usuario" type="text" placeholder="usuario"/>
-      <input  name="password" type="password" placeholder="password"/>
-      <button type="submit">Ingresar</button>
-      <p class="message">Olvidaste tu clave? <a href="#">Recuperar</a></p>
-    </form>
+    <?php    include("form.php");   ?>
 
   </div>
 </div>

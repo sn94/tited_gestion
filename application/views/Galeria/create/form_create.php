@@ -26,7 +26,7 @@
 var galery_indeX= 1;
 
 function gen_form(){
-    let form="<form action='/galeria/create' name='galeria-form"+galery_indeX+"'   enctype='multipart/form-data' method='post' accept-charset='utf-8'>";
+    let form="<form action='galeria/create' name='galeria-form"+galery_indeX+"'   enctype='multipart/form-data' method='post' accept-charset='utf-8'>";
     form=form+"<input type='hidden' name='proyecto_id'  value='<?=  $proyecto_id  ?>'  />";
     form= form+"<div class='row'><div class='col-md-6'><div  id='galeria_foto"+galery_indeX+"' style='max-height: 100px; max-width: 100px;'></div>";
     form=form+"<input   name='galeria_foto' type='file'  onchange='show_loaded_image( event , '#galeria_foto1')'></div>";
@@ -60,7 +60,7 @@ var quitar_foto= function( contx){
 
 var subir_foto= function( contx){    
       let form= $(  contx.parentNode.parentNode ).find("td form")[0];
-      load_page( proyectos.pro_gale_p,  contx, "#galeria-form", {alert:"Guardar foto en galeria?"}); 
+      load_page( proyecto.pro_gale_p,  contx, "#galeria-form", {alert:"Guardar foto en galeria?"}); 
     
 };
 

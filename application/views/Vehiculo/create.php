@@ -8,17 +8,17 @@ if(validation_errors()){ ?>
 <?php   echo form_open_multipart("vehiculo/create", array("name"=>"vehiculo-form","class"=>"col s12")  ) ;?>
 
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s2">
           <input   name="vehiculo_chapa" type="text" class="validate">
           <label for="vehiculo_chapa">Chapa</label>
         </div>
 
-        <div class="input-field col s5">
+        <div class="input-field col s2">
           <input  name="vehiculo_chasis" type="text" class="validate">
           <label for="vehiculo_chasis">Chasis</label>
         </div>
 
-        <div class="input-field col s3">
+        <div class="input-field col s2">
             <input  name="vehiculo_anio" type="text" class="validate">
             <label for="vehiculo_anio">A&ntilde;o</label>
           </div>
@@ -26,12 +26,12 @@ if(validation_errors()){ ?>
       </div>
      
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s2">
           <input   name="vehiculo_marca" type="text" class="validate">
           <label for="vehiculo_marca">Marca</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s2">
           <input  name="vehiculo_modelo" type="text" class="validate">
           <label for="vehiculo_modelo">Modelo</label>
         </div>

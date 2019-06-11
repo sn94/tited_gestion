@@ -1,11 +1,12 @@
 <?php
-class Check_Session {
+class Check_Permission {
 
      
 
+    private $permisos= array ('proyecto' => 'PRO');
 
 
-    function is_logged_in() {
+    function grant_access() {
         // Get current CodeIgniter instance
         $CI =& get_instance();
         // We need to use $CI->session instead of $this->session

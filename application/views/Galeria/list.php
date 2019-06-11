@@ -9,8 +9,14 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://sachinchoolur.github.io/lightGallery/lightgallery/css/lightgallery.css'>
 <link rel='stylesheet' href='https://sachinchoolur.github.io/lightGallery/lightgallery/css/lg-animations.css'>
+<link rel="stylesheet" href="../../assets/css/lightgallery_style.css">
 
-      <link rel="stylesheet" href="../../assets/css/lightgallery_style.css">
+<style>
+body{
+  margin: 30px;
+  border: 1px #3F51B5 solid;
+}
+</style>
 
   
 </head>
@@ -19,37 +25,33 @@
 
   
 <div class="container-fluid">
-      <h1>Galería de proyectos</h1>
+<h1 class="display-4">GALER&Iacute;A DE PROYECTOS</h1>   <a href="/tited_gestion" class="btn btn-primary">Volver</a>
+
+
   <div class="row">
 
     <div class="col-sm-8">
+    <div class="demo-gallery" id="demo-gallery">
+
     
-<div class="demo-gallery" id="demo-gallery">
-  
+      <br>
+      <?php    if( !$lista ){ ?>
+        <div class="alert alert-success col col-md-4"> <h4>Sin fotos</h4> </div>
+      <?php }  ?>
+
       <ul id="lightgallery">
        
        <?php   foreach( $lista as $row){ ?>
-<li data-responsive="../../<?= $row->Galeria_foto ?>"  data-src="../../<?= $row->Galeria_foto ?>"
-    data-sub-html="<p class='cat'><?= $row->Galeria_des ?></p>">
-        <a href="">
-          <img class="img-responsive text-center" src="../../<?= $row->Galeria_foto ?>">
-          <div class="demo-gallery-poster">
-                 </div>
-  </a>
+        <li data-responsive="../../<?= $row->Galeria_foto ?>"  data-src="../../<?= $row->Galeria_foto ?>"  data-sub-html="<p class='cat'><?= $row->Galeria_des ?></p>">
+        <a href="">  <img class="img-responsive text-center" src="../../<?= $row->Galeria_foto ?>">
+          <div class="demo-gallery-poster">  </div>
+          </a>
   <p class="capt"><?= $row->Galeria_des ?></p>
       </li>
       <?php  } ?>
   
 </ul>     
-    </div> </div>  <!-- end of demo-gallery -->   
-      
-      <div class="col-sm-4">
-         
-      <a href="/tited_gestion" class="btn btn-primary">Volver</a>
-
-
-
-      </div>
+    </div> </div>  <!-- end of demo-gallery -->    
       
 </div>      <!--end -->
 </div>     <!-- end of row -->

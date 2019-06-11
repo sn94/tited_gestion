@@ -18,7 +18,7 @@ if(validation_errors()){ ?>
         
         <div class="input-field col s4">
          
-        <button type="button" class="waves-effect waves-light btn" onclick= "load_page(tiposervicio, this, '#tiposer-form')">Guardar</button>
+        <button type="button" class="waves-effect waves-light btn" onclick= "load_page(tiposervicio.tiposer_add_p, this, '#tiposer-form')">Guardar</button>
 
         </div>
       </div>

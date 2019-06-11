@@ -4,21 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TITED</title> 
-	<link href="assets/css/font_google.css" rel="stylesheet">
-	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+	<link href="<?= base_url('assets/css/font_google.css')?>" rel="stylesheet">
+	<link rel="stylesheet" href="<?= base_url('assets/materialize/css/materialize.min.css')?>" media="screen,projection" />
     <!-- Bootstrap Styles-->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/bootstrap.css')?>" rel="stylesheet" />
     <!-- FontAwesome Styles-->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/font-awesome.css')?>" rel="stylesheet" />
     <!-- Morris Chart Styles-->
-    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="<?= base_url('assets/js/morris/morris-0.4.3.min.css')?>" rel="stylesheet" />
     <!-- Custom Styles-->
-    <link href="assets/css/custom-styles.css?v=<?php round(microtime(true) * 1000);?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/css/custom-styles.css?v='. round(microtime(true) * 1000) ) ?>" rel="stylesheet" />
 	 <!-- AUTOCOMPLETE-->
-	 <link href="assets/css/awesomplete.css" rel="stylesheet" />
+	 <link href="<?= base_url('assets/css/awesomplete.css')?>" rel="stylesheet" />
     <!-- Google Fonts-->
-    <link href='assets/css/font_google2.css' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+    <link href="<?= base_url('assets/css/font_google2.css') ?>" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="<?= base_url('assets/js/Lightweight-Chart/cssCharts.css')?>"> 
 
 	 
 
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand waves-effect waves-dark" href="/tited_gestion/welcome"><i class="large material-icons">track_changes</i> <strong>TITED</strong></a>
+                <a class="navbar-brand waves-effect waves-dark" href="/tited_gestion/welcome"><i class="large material-icons">web</i> <strong>TITED</strong></a>
 				
 		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
             </div>
@@ -48,11 +48,11 @@
         </nav>
 		<!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-<li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
+<li><a href="#"><i class="fa fa-user fa-fw"></i> Mis permisos</a>
 </li>
-<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+<li><a href="#"><i class="fa fa-gear fa-fw"></i> Configuraci&oacute;n</a>
 </li> 
-<li><a href="/tited_gestion/sign/out"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+<li><a href="/tited_gestion/sign/out"><i class="fa fa-sign-out fa-fw"></i> Cerrar sesi&oacute;n</a>
 </li>
 </ul>
 <ul id="dropdown2" class="dropdown-content w250">
@@ -623,32 +623,32 @@
     <!-- JS Scripts-->
     <!-- jQuery Js     -->
     
-	<script src="assets/js/jquery-1.10.2.js"></script>
+	<script src="<?= base_url('assets/js/jquery-1.10.2.js')?>"></script>
 	
 	<!-- Bootstrap Js -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="<?= base_url('assets/js/bootstrap.min.js')?>"></script>
 	
-	<script src="assets/materialize/js/materialize.min.js"></script>
+	<script src="<?= base_url('assets/materialize/js/materialize.min.js')?>"></script>
     <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="<?= base_url('assets/js/jquery.metisMenu.js')?>"></script>
     <!-- Morris Chart Js -->
-    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="assets/js/morris/morris.js?v=<?php round(microtime(true) * 1000);?>"></script>
+    <script src="<?= base_url('assets/js/morris/raphael-2.1.0.min.js')?>"></script>
+    <script src="<?= base_url('assets/js/morris/morris.js?v='. round(microtime(true) * 1000) )?>"></script>
 	<!-- EasyPie Chart Js -->
-	<script src="assets/js/easypiechart.js"></script>
-	<script src="assets/js/easypiechart-data.js"></script>
+	<script src="<?= base_url('assets/js/easypiechart.js')?>"></script>
+	<script src="<?= base_url('assets/js/easypiechart-data.js')?>"></script>
 	<!-- Jquery Chart Js -->
-	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	 <script src="<?= base_url('assets/js/Lightweight-Chart/jquery.chart.js')?>"></script>
 	  
 	 <!-- DATATABLES -->
-	 <script src="assets/js/dataTables/jquery.dataTables.js" ></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+	 <script src="<?= base_url('assets/js/dataTables/jquery.dataTables.js')?>" ></script>
+    <script src="<?= base_url('assets/js/dataTables/dataTables.bootstrap.js')?>"></script>
  <!-- AUTOCOMPLETE -->
- <script src="assets/js/awesomplete.min.js"></script>
+ <script src="<?= base_url('assets/js/awesomplete.min.js')?>"></script>
     <!-- Custom Js -->
-	<script src="assets/js/tited_routes.js?v=<?php round(microtime(true) * 1000);?>"></script>
-	<script src="assets/js/custom-scripts.js"></script>
-	<script src="assets/js/myjs.js?v=<?php round(microtime(true) * 1000);?>"></script> 
+	<script src="<?= base_url('assets/js/tited_routes.js?v='. round(microtime(true) * 1000) )?>"></script>
+	<script src="<?= base_url('assets/js/custom-scripts.js')?>"></script>
+	<script src="<?= base_url('assets/js/myjs.js?v='.round(microtime(true) * 1000))?>"></script> 
  
 
 </body>

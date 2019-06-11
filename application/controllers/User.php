@@ -67,8 +67,8 @@ class User extends CI_Controller {
 		$this->load->library("form_validation");
  
 		//settear reglas de validacion
-        $this->form_validation->set_rules("usuario_nick", "Nick de usuario", "required", array('required' => 'Ingrese un nick'));
-        $this->form_validation->set_rules("usuario_key", "Clave de usuario", "required", array('required' => 'Escriba una clave'));
+        $this->form_validation->set_rules("Usuario_nick", "Nick de usuario", "required", array('required' => 'Ingrese un nick'));
+        $this->form_validation->set_rules("Usuario_key", "Clave de usuario", "required", array('required' => 'Escriba una clave'));
         $this->form_validation->set_rules("personal_id", "Personal a vincular", "required", array('required' => 'Indique el personal al cual se vincular&aacute; el usuario'));
 
 		 //verificar la validacion
@@ -76,9 +76,7 @@ class User extends CI_Controller {
 			$_obj= $this->user_model->get( );
 			 $this->load->view('User/edit', array("data" =>  $_obj )  ); 
 		 }else{
-			 $data =  $this->input->post(  NULL,  true);
-			 $this->db->where('usuario_id', $this->input->post("usuario_id"));
-			$this->db->update('usuario', $data);
+			 $this->user_model->edit();
 			$this->load->view("Plantillas/success",  array("title"=>"Registro editado!", "message"=>"Haz editado un registro de usuario"));
 		 }
 		}
@@ -130,4 +128,13 @@ class User extends CI_Controller {
 }
 
  
+
+
+
+
+
+
+
+
+	
 }

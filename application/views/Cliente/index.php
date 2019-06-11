@@ -1,6 +1,6 @@
 <div class="header"> 
           <h1 class="page-header" id="big-form-title">
-                            Ciudades
+                            Clientes
           </h1>
 						<ol class="breadcrumb" id="my-breadcrumb">
 					  <li><a href="#">Inicio</a></li>

@@ -55,6 +55,9 @@ class Compra extends CI_Controller {
 						$data['Compra_foto']= "./galeria/compras/".$photo_data['upload_data']['file_name'];
 						//guardar en bd
 						$sql= $this->db->insert('compras', $data);	 
+
+						//alguna salida en caja chica?
+						
 						//preparar mensaje json
 						$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz registrado un comprobante de Compra! "));
 						$this->load->view("Compra/go_back");

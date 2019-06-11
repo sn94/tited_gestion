@@ -12,10 +12,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$hook['post_controller_constructor'] = array(
+$hook['post_controller_constructor'][] = array(
     'class'    => 'Check_Session',
     'function' => 'is_logged_in',
     'filename' => 'check_session.php',
     'filepath' => 'hooks',
     'params'   => ""
 );
+
+/*
+$hook['post_controller_constructor'][] = array(
+    'class'    => 'Check_Permission',
+    'function' => 'grant_access',
+    'filename' => 'check_permission.php',
+    'filepath' => 'hooks',
+    'params'   => ""
+);*/

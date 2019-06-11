@@ -15,13 +15,15 @@ class User_model extends CI_Model {
     public function add(){ 
     
         $data= $this->input->post(  NULL,  true); 
+        $data['Usuario_key'] = password_hash(  $data['Usuario_key'], PASSWORD_DEFAULT );
         $sql= $this->db->insert('usuario', $data);	
     }
 
 
     public function edit(){ 
         $data= $this->input->post(  NULL,  true); 
-        $this->db->where("usuario_id", $data['usuario_id']);
+        $data['Usuario_key'] = password_hash(  $data['Usuario_key'] ,  PASSWORD_DEFAULT);
+        $this->db->where("usuario_id", $data['Usuario_id']);
         $sql= $this->db->update('usuario', $data);	
     }
 
@@ -84,6 +86,46 @@ public function permisos_asignados(){
         get()->result_object(); 
 		return $lista;
 }
+
+public function permisos_de_usuario(  $perm_code){ 
+    //id usuario en session
+    $id= $this->session->userdata("id");
+
+    $lista= $this->db->select(" permisos.Permiso_codigo")->
+		from("usuario")->
+        join("accesos", "accesos.Usuario_id= usuario.Usuario_id","left")-> 
+        join("permisos", "permisos.Permiso_id=accesos.Permiso_id", "left")->
+        where("usuario.Usuario_id" , $id)->
+        get()->result_object(); 
+    foreach( $lista as $it){
+        if( $it->Permiso_codigo ==  $perm_code ){   return true;}
+    }
+		return false;
+}
+
+
+/***For Sign in    */
+public function getByNick(){
+    $usuario= $this->input->post("usuario") ?  $this->input->post("usuario") : $this->input->get("usuario") ;
+    $dts= $this->db->get_where("usuario",  array("Usuario_nick" => $usuario)  )->row();   return $dts;
+}
+
+public function existUser(){
+    return $this->getByNick() != NULL ;
+}
+
+
+public function isCorrectPassword( ){
+
+    $usuario= $this->input->post("usuario");
+    $pass=  $this->input->post("password");
+    $dts= $this->getByNick();
+    
+    return $dts == NULL ? false: password_verify( $pass,  $dts->Usuario_key ) ;
+}
+
+
+
 }
 
 

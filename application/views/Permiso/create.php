@@ -9,6 +9,9 @@ if(validation_errors()){ ?>
 
 <?php  echo form_open("permiso/create", array("name"=>"permiso-form","class"=>"col s12")  ) ;?>
   
+<input type="hidden" name="permiso_creacion"   > 
+<input type="hidden" name="permiso_creacion_h" >
+
       <div class="row">
         <div class="input-field col s4">
           <input   name="permiso_nombre" type="text" class="validate" onkeyup=" control_length(event, 30);">
@@ -38,6 +41,22 @@ if(validation_errors()){ ?>
 
           }
         }
+
+
+
+        $( function () {
+
+//asignar fecha actual
+$("form[name=permiso-form] input[name=permiso_creacion]").val( 
+  new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate() ) ;
+
+
+  $("form[name=permiso-form] input[name=permiso_creacion_h]").val( 
+   new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
+
+$('.datepicker').pickadate( setting_date ) ;
+
+}); 
 
 
         </script>

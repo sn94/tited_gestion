@@ -12,44 +12,48 @@
 
       <link rel="stylesheet" href="../assets/css/lightgallery_style.css">
 
-  
+<style>
+body{
+  margin: 30px;
+  border: 1px #3F51B5 solid;
+}
+</style>
+
+
 </head>
 
 <body>
 
   
 <div class="container-fluid">
-      <h3>Facturas de compra</h3>
+<h1 class="display-4">Facturas de compra</h1>  <a href="/tited_gestion" class="btn btn-primary">Volver</a>
+
   <div class="row">
 
     <div class="col-sm-8">
     
 <div class="demo-gallery" id="demo-gallery">
   
+
+      <br>
+      <?php    if( !$lista ){ ?>
+        <div class="alert alert-success col col-md-4"> <h4>Sin fotos</h4> </div>
+      <?php }  ?>
+
+
       <ul id="lightgallery">
        
        <?php   foreach( $lista as $row){ ?>
-<li data-responsive="../<?= $row->Compra_foto ?>"  data-src="../<?= $row->Compra_foto ?>"
-    data-sub-html="<p class='cat'><?=  $row->Compra_fecha ?></p>">
-        <a href="">
-          <img class="img-responsive text-center" src="../<?= $row-> Compra_foto ?>">
-          <div class="demo-gallery-poster">
-                 </div>
-  </a>
-  <p class="capt"><?= $row->Compra_fecha ?></p>
-      </li>
+          <li data-responsive="../<?= $row->Compra_foto ?>"  data-src="../<?= $row->Compra_foto ?>"  data-sub-html="<p class='cat'><?=  $row->Compra_fecha ?></p>">
+            <a href=""><img class="img-responsive text-center" src="../<?= $row-> Compra_foto ?>">
+              <div class="demo-gallery-poster">  </div>
+            </a>
+            <p class="capt"><?= $row->Compra_fecha ?></p>
+          </li>
       <?php  } ?>
   
 </ul>     
     </div> </div>  <!-- end of demo-gallery -->   
-      
-      <div class="col-sm-4">
-         
-      <a href="/tited_gestion" class="btn btn-primary">Volver</a>
-
-
-
-      </div>
       
 </div>      <!--end -->
 </div>     <!-- end of row -->
