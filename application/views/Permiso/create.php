@@ -18,7 +18,12 @@ if(validation_errors()){ ?>
           <label for="permiso_nombre">Descripci&oacute;n:</label>
           <h6>M&aacute;x. 30 caracteres</h6>
         </div> 
-          
+        <div class="input-field col s4">
+          <input   name="permiso_codigo" type="text" class="validate" onkeyup=" control_length(event, 4);">
+          <label for="permiso_codigo">C&oacute;digo:</label>
+          <h6>M&aacute;x. 4 caracteres</h6>
+        </div>
+
       </div>
       
       <div class="row">

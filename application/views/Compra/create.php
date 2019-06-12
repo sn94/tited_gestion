@@ -40,9 +40,8 @@ if(validation_errors()){ ?>
 <?php   echo form_open_multipart("compra/create", array("name"=>"compra-form","class"=>"col s12")  ) ;?>
 
 <div class="row">
-<!-- campos ocultos -->   
-<input type="hidden" name="compra_fecha_reg" > 
-<input type="hidden" name="compra_hora_reg" >
+<!-- campos ocultos -->    
+<input type="hidden" name="personal_id" value="<?= $this->session->userdata("personal_id") ?>" >
 
 
 <!-- fecha --> 
@@ -117,14 +116,14 @@ if(validation_errors()){ ?>
 
 
    $( function () {
-
+/*
      //asignar fecha actual
     $("form[name=compra-form] input[name=compra_fecha_reg]").val( 
        new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate() ) ;
 
        $("form[name=compra-form] input[name=compra_hora_reg]").val( 
         new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
- 
+ */
     $('.datepicker').pickadate( setting_date ) ;
 
 }); 

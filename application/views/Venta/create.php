@@ -43,9 +43,7 @@ if(validation_errors()){ ?>
 <div class="row">
 <!-- campos ocultos --> 
 <input type='hidden' name='proyecto_id'  value='<?= $proyecto_id ? $proyecto_id : set_value('proyecto_id') ?>'  />
-<input type="hidden" name="personal_id" value="2"   > 
-<input type="hidden" name="venta_fecha_reg"   > 
-<input type="hidden" name="venta_hora_reg" >
+<input type="hidden" name="personal_id" value="<?= $this->session->userdata("personal_id") ?>"  >  
 
 
 <!-- fecha --> 
@@ -118,14 +116,14 @@ Materialize.toast( toastContent, 2000);
 
    $( function () {
 
-     //asignar fecha actual
+ /*    //asignar fecha actual
     $("form[name=venta-form] input[name=venta_fecha_reg]").val( 
        new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate() ) ;
 
  
        $("form[name=venta-form] input[name=venta_hora_reg]").val( 
         new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
-
+*/
     $('.datepicker').pickadate( setting_date ) ;
 
 }); 

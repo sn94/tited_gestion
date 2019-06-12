@@ -34,7 +34,7 @@
 
       <div class="row">
 
-        <input name="personal_id" type="hidden" value="2"><input name="Cuenta_fecha_reg" type="hidden"  >  <input type="hidden" name="Cuenta_hora_reg" >
+        <input name="personal_id" type="hidden" value="<?= $this->session->userdata("personal_id") ?>"> 
 
         <div class="input-field col s2"> <input name="Cuenta_fecha" type="text" class="validate datepicker" value="<?= set_value('Cuenta_fecha') ?>" ><label for="Cuenta_fecha"  >Fecha de transacci&oacute;n</label></div>
         <!-- tipo de venta-->
@@ -67,14 +67,14 @@
   <script>
    $( function () {
 
-     //asignar fecha actual
+   /*  //asignar fecha actual
     $("form[name=bancos-form] input[name=Cuenta_fecha_reg]").val( 
        new Date().getFullYear()+"-"+(new Date().getMonth()+1)+"-"+new Date().getDate() ) ;
 
  
        $("form[name=bancos-form] input[name=Cuenta_hora_reg]").val( 
         new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
-
+*/
 
     $('.datepicker').pickadate( setting_date ) ;
 

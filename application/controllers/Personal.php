@@ -7,6 +7,7 @@ class Personal extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
+		$this->load->model("personal_model");
 	}
 
 
@@ -52,25 +53,10 @@ class Personal extends CI_Controller {
 			
 			$this->load->view('Personal/create'); 
 		}else{
-
-			//subir la foto, cedula
-			$photo_data= $this->do_upload( "personal_foto1"); 
-			//subir la foto, registro de c.
-			$photo_data2= $this->do_upload( "personal_foto2"); 
-			//obtener los valores del resto de los campos
-			$data= $this->input->post(  NULL,  true);
-			//Verificar los datos que se guardaran
-			if( !array_key_exists( "error", $photo_data ) && !array_key_exists( "error", $photo_data2 )  ){
-				//Si existe un error en la subida
-
-				$data['personal_foto1']= "./galeria/personal/".$photo_data['upload_data']['file_name'];
-				$data['personal_foto2']= "./galeria/personal/".$photo_data2['upload_data']['file_name'];
-			}
-			
- 
-			$sql= $this->db->insert('personal', $data);
-
+			$this->Personal_model->add();
 			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se agreg&oacute; un personal "));
+			 
+
 		}
 	 }
 
@@ -99,33 +85,14 @@ class Personal extends CI_Controller {
 			
 			$this->load->view('Personal/edit',  array("data"=> $data)); 
 		}else{
-
-			//subir la foto, cedula
-			$photo_data= $this->do_upload( "personal_foto1"); 
-			//subir la foto, registro de c.
-			$photo_data2= $this->do_upload( "personal_foto2"); 
-			//obtener los valores del resto de los campos
-			$data= $this->input->post(  NULL,  true);
-			//Verificar los datos que se guardaran
-			if( !array_key_exists( "error", $photo_data ) && !array_key_exists( "error", $photo_data2 )  ){
-				//Si existe un error en la subida
-
-				$data['personal_foto1']= "./galeria/personal/".$photo_data['upload_data']['file_name'];
-				$data['personal_foto2']= "./galeria/personal/".$photo_data2['upload_data']['file_name'];
-			}
-			
-			
-			 $this->db->where('personal_id', $this->input->post("personal_id"));
-			$this->db->update('personal', $data);
+			$this->Personal_model->edit();
 			$this->load->view("Plantillas/success",  array("title"=>"Registro editado!", "message"=>"Haz editado un registro de personal"));
-		 }
+		  }
 		}
 
 
 	 public function delete(){
-	 
-		$id= $this->input->get("personal_id"); 
-		$sql= $this->db->delete('personal',  array('personal_id' => $id)  ) ;
+		$this->Personal_model->del(); 
 		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Personal"));
 		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );
 	 }

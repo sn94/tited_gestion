@@ -18,13 +18,16 @@ class Venta_model extends CI_Model {
         
         if( !array_key_exists( "error", $photo_data )  ){
             //guardar venta en bd
-            $sql= $this->db->insert('venta', $data);	
+            $data['Venta_foto']= "./galeria/ventas/".$photo_data['upload_data']['file_name'];
+            $sql= $this->db->insert('venta', $data);
+
             //actualizar cuenta banc.
             $sql= $this->db->insert('cuenta_banc', 
             array("Cuenta_mov" =>"E", "Cuenta_monto"=>$data['venta_total'],
             "Cuenta_obs"=> "Cobro",
-             "Cuenta_fecha"=> $data['venta_fecha_reg'],
-            "Cuenta_fecha_reg"=> $data['venta_fecha_reg'], "Cuenta_hora_reg"=> $data['venta_hora_reg'], "Personal_id"=> $data['personal_id']));
+             "Cuenta_fecha"=> $data['venta_fecha'],
+            "Personal_id"=> $data['personal_id']));
+            
             //cambiar estado de proyecto a COBRADO
             $this->db->set("Proyecto_estado", "C");
             $this->db->where('Proyecto_id', $data['proyecto_id']);

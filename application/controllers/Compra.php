@@ -8,6 +8,8 @@ class Compra extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->database();
+		$this->load->model("compra_model");
+
 	}
 
 
@@ -22,21 +24,25 @@ class Compra extends CI_Controller {
  
 
 	public function list(){
-		$d= $this->list_from_db();
-		$this->load->view("Compra/list",   array("lista"=>    $d  )    );
+
+		if(  $this->user_model->permisos_de_usuario("COBC")){
+			$d= $this->list_from_db();
+			$this->load->view("Compra/list",   array("lista"=>    $d  )    );
+		}else{
+			$this->load->view("Plantillas/unauthorized");
+		} 
 	}
 
 
   public function create(){ 
+
+	if(  $this->user_model->permisos_de_usuario("COFC")){
 		$this->load->helper("form");
 		$this->load->library("form_validation");
 		//reglas
 		$this->form_validation->set_rules("compra_fecha", "Fecha de factura", "required",  array("required" => "Indique la fecha de factura") );
 		$this->form_validation->set_rules("compra_total", "Total de factura", "required",  array("required" => "Indique el Monto total") );
 		$this->form_validation->set_rules("compra_nro_fac", "N n&uacute;mero de factura", "required",  array("required" => "Indique el n&uacute;mero de factura") );
-
-
-
 		//get
 		if( $this->input->method() == "get"){
 			$this->load->view(  'Compra/create' );
@@ -46,19 +52,9 @@ class Compra extends CI_Controller {
 			if( $this->form_validation->run()===  FALSE){ 
 				$this->load->view("Compra/create");
 			}else{
-				$data= $this->input->post(  NULL,  true);  
-			
-				//guardar foto en galeria
-				$photo_data= $this->do_upload(  "compra_foto"); //retorna el nombre del archivo
-				if( !array_key_exists( "error", $photo_data )  ){
-						//Si existe un error en la subida
-						$data['Compra_foto']= "./galeria/compras/".$photo_data['upload_data']['file_name'];
-						//guardar en bd
-						$sql= $this->db->insert('compras', $data);	 
-
-						//alguna salida en caja chica?
-						
-						//preparar mensaje json
+				$estado= $this->Compra_model->add(); 
+				
+				if( $estado  ){ 
 						$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz registrado un comprobante de Compra! "));
 						$this->load->view("Compra/go_back");
 				 }else{
@@ -67,39 +63,17 @@ class Compra extends CI_Controller {
 					 $this->load->view("Compra/create");
 				 }
 			}
-		}		
-			
+		}	
+	}else{
+		$this->load->view("Plantillas/unauthorized");
 	}
+}
 
 	  
 
 
 
-
-
-
-	 private function do_upload(  $fieldname)
-	 {
-			 $config['upload_path']          = './galeria/compras';
-			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
-			 $config['max_size']             = 500;
-			 $config['max_width']            = 3072;//1024 * 3
-			 $config['max_height']           = 3072; 
-
-			 $this->load->library('upload', $config);
-
-			
-			 if ( ! $this->upload->do_upload(  $fieldname ))
-			 { 
-					 $error = array('error' => $this->upload->display_errors()); return $error;
-			 }
-			 else
-			 {
-					 $data = array('upload_data' => $this->upload->data()); return $data;
-			 }
-	 }
-
-
+ 
 
 
 }

@@ -41,6 +41,7 @@ class Permiso extends CI_Controller {
 
 		//settear reglas de validacion
 			$this->form_validation->set_rules("permiso_nombre", "Descripcion", "required", array('required' => 'Ingrese una descripci&oacute;n'));
+			$this->form_validation->set_rules("permiso_codigo", "C&oacute;digo", "required", array('required' => 'Detalle un código alfab&eacute;tico'));
 		 
 		//verificar la validacion
 		if( $this->form_validation->run() === FALSE ){
@@ -60,6 +61,8 @@ class Permiso extends CI_Controller {
  
 		//settear reglas de validacion
 		$this->form_validation->set_rules("Permiso_nombre", "Descripcion", "required", array('required' => 'Ingrese una descripci&oacute;n'));
+		$this->form_validation->set_rules("permiso_codigo", "C&oacute;digo", "required", array('required' => 'Detalle un código alfab&eacute;tico'));
+		 
 		
 		 //verificar la validacion
 		 if( $this->form_validation->run() === FALSE ){

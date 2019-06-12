@@ -58,36 +58,32 @@ class Galeria extends CI_Controller {
 
 
 	public function create(){ 
-		$this->load->helper("form");
-		
-		//get
-		if( $this->input->method() == "get"){
-			$id_pro= $this->input->get("proyecto_id")?$this->input->get("proyecto_id"):$this->input->post("proyecto_id") ;
-			$this->load->view(  'Galeria/create/create',  array(  "proyecto_id"=> $id_pro)  );
-		
+		if(  $this->user_model->permisos_de_usuario("PRGG")){
+			$this->load->helper("form");
+			//get
+			if( $this->input->method() == "get"){
+				$id_pro= $this->input->get("proyecto_id")?$this->input->get("proyecto_id"):$this->input->post("proyecto_id") ;
+				$this->load->view(  'Galeria/create/create',  array(  "proyecto_id"=> $id_pro)  );
+			
+			}else{
+				//post
+				$data= $this->input->post(  NULL,  true);   
+				//guardar foto en galeria
+				$photo_data= $this->do_upload(  "galeria_foto"); //retorna el nombre del archivo
+					if( !array_key_exists( "error", $photo_data )  ){
+						//Si existe un error en la subida
+							$data['Galeria_foto']= "./galeria/proyectos/".$photo_data['upload_data']['file_name'];
+					 }else{  print "hubo error al subir";  } 
+					//guardar en bd
+				$sql= $this->db->insert('galeria_proyectos', $data);						
+				//verificar exito de la operacion
+	
+				//preparar mensaje json
+				$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz agregado una foto al &aacute;lbum de proyecto! "));
+			}
 		}else{
-			//post
-
-			$data= $this->input->post(  NULL,  true);  
-			
-			//guardar foto en galeria
-			$photo_data= $this->do_upload(  "galeria_foto"); //retorna el nombre del archivo
-				if( !array_key_exists( "error", $photo_data )  ){
-					//Si existe un error en la subida
-						$data['Galeria_foto']= "./galeria/proyectos/".$photo_data['upload_data']['file_name'];
-				 }else{
-					 print "hubo error alsubir";
-				 }
-
-				//guardar en bd
-			$sql= $this->db->insert('galeria_proyectos', $data);						
-			
-			//verificar exito de la operacion
-
-			//preparar mensaje json
-			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz agregado una foto al &aacute;lbum de proyecto! "));
-		}		
-			
+			$this->load->view("Plantillas/unauthorized");
+		}
 	}
 
 	 public function delete(){

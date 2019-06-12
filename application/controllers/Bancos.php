@@ -8,7 +8,7 @@ class Bancos extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("bancos_model");
-		$this->load->model("user_model");
+		
 		
 		
 	}
@@ -16,6 +16,7 @@ class Bancos extends CI_Controller {
 
 
 	public function list(){
+		
 		if(  $this->user_model->permisos_de_usuario("BALB")){
 			$data= $this->bancos_model->list();
 			$this->load->view("Bancos/list",  array("lista"=> $data)    );

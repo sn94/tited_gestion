@@ -38,7 +38,7 @@ class Sign extends CI_Controller {
 				if( $this->user_model->isCorrectPassword()){
 					$dts= $this->user_model->getByNick();
 					//guardando en sesion:   nick   key   user_id
-					$newdata = array( 'usuario'  => $user, 'password'     => $pass, "id" =>  $dts->Usuario_id  );
+					$newdata = array( 'usuario'  => $user, 'password'     => $pass, "id" =>  $dts->Usuario_id , "personal_id" => $dts->Personal_id);
 					$this->session->set_userdata(  $newdata);
 					//cargar 
 					redirect( "welcome");
