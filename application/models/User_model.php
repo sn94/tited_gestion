@@ -64,7 +64,7 @@ class User_model extends CI_Model {
 
 public function asignar_permisos(){
 
-    $pers_ids= $this->input->post("permiso_id")   ;
+    $pers_ids= $this->input->post("permiso_id")   ; 
     $data["Usuario_id"]=  $this->input->post("usuario_id");
 
     //borrar registros anteriores antes de reasignar 
@@ -79,9 +79,10 @@ public function asignar_permisos(){
 
 
 public function permisos_asignados(){ 
-    $lista= $this->db->select("permisos.Permiso_id, permisos.Permiso_nombre, accesos.Permiso_id as acceid")->
+    $this->db->distinct();
+    $lista=   $this->db->select("permisos.Permiso_id, permisos.Permiso_nombre, accesos.Permiso_id as acceid")->
 		from("usuario")->
-        join("accesos", "accesos.Usuario_id= usuario.Usuario_id","right")-> 
+        join("accesos", "accesos.Usuario_id=".$this->input->get("usuario_id")   ,"right")-> 
         join("permisos", "permisos.Permiso_id=accesos.Permiso_id", "right")->
         get()->result_object(); 
 		return $lista;

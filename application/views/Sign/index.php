@@ -3,12 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acceso al sistema</title>
   
   
-  
-      <link rel="stylesheet" href="<?= base_url('assets/css_login/style.css?v='. round(microtime(true) * 1000)) ?>">
-
+   <!-- Bootstrap Styles-->
+   <link href="<?= base_url('assets/css/bootstrap.css')?>" rel="stylesheet" />
+    
+   
   
 </head>
 

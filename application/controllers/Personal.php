@@ -14,20 +14,23 @@ class Personal extends CI_Controller {
 
 	public function index()
 	{
-		
-		$lista['lista'] = $this->db->get('Personal')->result();
-		 
-		//var_dump( $lista);
-		$this->load->view('Personal/index' ,  $lista);
+		if(  $this->user_model->permisos_de_usuario("REHL")){ 
+			$lista['lista'] = $this->db->get('personal')->result(); 
+			$this->load->view('Personal/index' ,  $lista);
+		}else{
+			$this->load->view("Plantillas/unauthorized");
+		} 
 	}
 
 
 	public function list(){
-		$lista['lista'] = $this->db->get('Personal')->result();
-		 
-		//var_dump( $lista);
-		$this->load->view('Personal/list' ,  $lista);
-	}
+		if(  $this->user_model->permisos_de_usuario("REHL")){ 
+			$lista['lista'] = $this->db->get('Personal')->result(); 
+			$this->load->view('Personal/list' ,  $lista);
+		}else{
+			$this->load->view("Plantillas/unauthorized");
+		}
+}
 
 
 	public function list_json(){
@@ -35,93 +38,62 @@ class Personal extends CI_Controller {
 		echo json_encode(  $lista);
 	}
 
-	
+	private function set_validation(){
+		//mostrar form
+		$this->load->helper("form"); $this->load->library("form_validation");
+		//settear reglas de validacion
+		$this->form_validation->set_rules("personal_ci", "n&uacute;mero de c&eacute;dula", "required", array('required' => 'Indique el n&uacute;mero de c&eacute;dula'));
+		$this->form_validation->set_rules("personal_nom", "nombre", "required", array('required' => 'Ingrese los nombres'));
+		$this->form_validation->set_rules("personal_ape", "apellido", "required", array('required' => 'Indique los apellidos'));
+		return $this->form_validation->run();
+	}
+
 	public function create(){
 
-	 
-		//mostrar form
-			$this->load->helper("form");
-			$this->load->library("form_validation");
-
-		//settear reglas de validacion
-			$this->form_validation->set_rules("personal_ci", "n&uacute;mero de c&eacute;dula", "required", array('required' => 'Indique el n&uacute;mero de c&eacute;dula'));
-			$this->form_validation->set_rules("personal_nom", "nombre", "required", array('required' => 'Ingrese los nombres'));
-			$this->form_validation->set_rules("personal_ape", "apellido", "required", array('required' => 'Indique los apellidos'));
-			 
-		//verificar la validacion
-		if( $this->form_validation->run() === FALSE ){
-			
-			$this->load->view('Personal/create'); 
+		if(  $this->user_model->permisos_de_usuario("REHC")){ 
+			if( $this->set_validation()  === FALSE ){
+				$this->load->view('Personal/create');
+			}else{
+				$this->Personal_model->add();
+				$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se agreg&oacute; un personal "));
+			} 
 		}else{
-			$this->Personal_model->add();
-			$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Se agreg&oacute; un personal "));
-			 
-
+			$this->load->view("Plantillas/unauthorized");
 		}
-	 }
+	 
+	}
 
 
 	 public function edit(){
-		 	
-		//mostrar form
-			$this->load->helper("form");
-			$this->load->library("form_validation");
-
-		//settear reglas de validacion
-			$this->form_validation->set_rules("personal_ci", "n&uacute;mero de c&eacute;dula", "required", array('required' => 'Indique el n&uacute;mero de c&eacute;dula'));
-			$this->form_validation->set_rules("personal_nom", "nombre", "required", array('required' => 'Ingrese los nombres'));
-			$this->form_validation->set_rules("personal_ape", "apellido", "required", array('required' => 'Indique los apellidos'));
-			///$this->form_validation->set_rules("vehiculo_foto", "Foto", "required", array('required' => 'Cargue una foto'));
-
-		//verificar la validacion
-		if( $this->form_validation->run() === FALSE ){
-			$id= $this->input->get("personal_id") ? $this->input->get("personal_id") : $this->input->post("personal_id");
-			//consultar datos de personal y ciudad
-			$this->db->select('personal.personal_id,personal.personal_nom,personal.personal_ape,personal.personal_ci,personal.personal_cel,personal.personal_tel,personal.personal_dir,personal.personal_email,personal.personal_fecha_nac,personal.personal_foto1,personal.personal_foto2,ciudad.ciudad_id,ciudad.ciudad_nom');
-			$this->db->from('personal');
-			$this->db->join("ciudad", "ciudad.ciudad_id=personal.ciudad_id" ,"left");
-			$this->db->where('personal.personal_id', $id);  
-			$data= $this->db->get()->row(); 
-			
-			$this->load->view('Personal/edit',  array("data"=> $data)); 
+			 
+		if(  $this->user_model->permisos_de_usuario("REHE")){ 
+			if( $this->set_validation()  === FALSE ){ 
+				$data= $this->Personal_model->getWithoutId();  
+				$this->load->view('Personal/edit',  array("data"=> $data)); 
+			}else{
+				$this->Personal_model->edit(); 
+				$this->load->view("Plantillas/success",  array("title"=>"Registro editado!", "message"=>"Haz editado un registro de personal"));
+				} 
 		}else{
-			$this->Personal_model->edit();
-			$this->load->view("Plantillas/success",  array("title"=>"Registro editado!", "message"=>"Haz editado un registro de personal"));
-		  }
+			$this->load->view("Plantillas/unauthorized");
 		}
+	}
 
 
 	 public function delete(){
-		$this->Personal_model->del(); 
-		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Personal"));
-		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );
-	 }
+		if(  $this->user_model->permisos_de_usuario("REHB")){ 
+			$this->Personal_model->del(); 
+			$this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado un registro de Personal"));
+		}else{
+			$this->load->view("Plantillas/unauthorized");
+		}
+	}
 
 
 
 
 
-
-
-	 private function do_upload(  $fieldname)
-	 {
-			 $config['upload_path']          = './galeria/personal';
-			 $config['allowed_types']        = 'gif|jpg|jpeg|png';
-			 $config['max_size']             = 100;
-			 $config['max_width']            = 2048;
-			 $config['max_height']           = 1536;
-
-			 $this->load->library('upload', $config);
-
-			 if ( ! $this->upload->do_upload(  $fieldname ))
-			 {
-					 $error = array('error' => $this->upload->display_errors()); return $error;
-			 }
-			 else
-			 {
-					 $data = array('upload_data' => $this->upload->data()); return $data;
-			 }
-	 }
+ 
 
 
 }

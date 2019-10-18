@@ -57,7 +57,20 @@ class Personal_model extends CI_Model {
     }
 
  
+    public function get( $id){
+         $this->db->select('personal.personal_id,personal.personal_nom,personal.personal_ape,personal.personal_ci,personal.personal_cel,personal.personal_tel,personal.personal_dir,personal.personal_email,personal.personal_fecha_nac,personal.personal_foto1,personal.personal_foto2,ciudad.ciudad_id,ciudad.ciudad_nom');
+        $this->db->from('personal');
+        $this->db->join("ciudad", "ciudad.ciudad_id=personal.ciudad_id" ,"left");
+        $this->db->where('personal.personal_id', $id);  
+        $data= $this->db->get()->row();  return $data;
+    }
  
+    public function getWithoutId(){
+        $id= $this->input->get("personal_id") ? $this->input->get("personal_id") : $this->input->post("personal_id");
+        $data= $this->get($id);  return $data;
+    }
+
+
     public function list(){ 
        return $this->db->get('Personal')->result();
     }

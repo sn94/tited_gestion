@@ -9,34 +9,14 @@ class Venta_model extends CI_Model {
 
     }
 
-    public function add(){
-        $this->load->library("upload_file");
+    public function add(){ 
 
         $data= $this->input->post(  NULL,  true);  
-		//guardar foto en galeria
-        $photo_data= $this->upload_file->do_upload( "venta_foto", './galeria/ventas'); //retorna el nombre del archivo
         
-        if( !array_key_exists( "error", $photo_data )  ){
-            //guardar venta en bd
-            $data['Venta_foto']= "./galeria/ventas/".$photo_data['upload_data']['file_name'];
-            $sql= $this->db->insert('venta', $data);
-
-            //actualizar cuenta banc.
-            $sql= $this->db->insert('cuenta_banc', 
-            array("Cuenta_mov" =>"E", "Cuenta_monto"=>$data['venta_total'],
-            "Cuenta_obs"=> "Cobro",
-             "Cuenta_fecha"=> $data['venta_fecha'],
-            "Personal_id"=> $data['personal_id']));
-            
-            //cambiar estado de proyecto a COBRADO
-            $this->db->set("Proyecto_estado", "C");
-            $this->db->where('Proyecto_id', $data['proyecto_id']);
-            $sql2= $this->db->update('proyectos'); 
-            return 1;
-        }else{
-            return 0;
-        }
-
+        $cabecera= array("Personal_id"=>$data['Personal_id'],  "Venta_nro_fac"=> $data['Venta_nro_fac'], "Venta_tipo"=>$data['Venta_tipo'], "Venta_total"=>$data['Venta_total'] );
+        $detalle= array();
+        $sql= $this->db->insert('venta', $data);
+        return 1;
     }
 
 

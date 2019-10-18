@@ -114,11 +114,11 @@ class User extends CI_Controller {
 				if( $this->input->method() == "get"){
 					
 					$data['lista']= $this->user_model->permisos_asignados();
-					$id = $this->input->get("usuario_id");  $data["usuario_id"]= $id;
+					$id = $this->input->get("usuario_id");  $data["usuario_id"]= $id; 
 					$this->load->view("User/permisos",   $data);
 
 				}else{
-					$this->load->view("User/validation",   $data);
+					$this->load->view("User/validation");
 				}
 			}else{
 				$this->user_model->asignar_permisos();

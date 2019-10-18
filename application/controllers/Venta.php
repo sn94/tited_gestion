@@ -53,25 +53,25 @@ class Venta extends CI_Controller {
 		$this->load->helper("form");
 		$this->load->library("form_validation");
 		//reglas
+		/*
 		$this->form_validation->set_rules("venta_fecha", "Fecha de factura", "required",  array("required" => "Indique la fecha de factura") );
 		$this->form_validation->set_rules("venta_total", "Total de factura", "required",  array("required" => "Indique el Monto total") );
 		$this->form_validation->set_rules("venta_nro_fac", "N n&uacute;mero de factura", "required",  array("required" => "Indique el n&uacute;mero de factura") );
-
+		*/
 
 
 		//get
-		if( $this->input->method() == "get"){
-			$id_pro= $this->input->get("proyecto_id")?$this->input->get("proyecto_id"):$this->input->post("proyecto_id") ;
-			$this->load->view(  'Venta/create',  array(  "proyecto_id"=> $id_pro)  );
-		
+		if( $this->input->method() == "get"){ 
+			$this->load->view(  'Venta/create'  );
 		}else{
 			//post
-			if( $this->form_validation->run()===  FALSE){ 
-				$this->load->view("Venta/create");
-			}else{
+			//if( $this->form_validation->run()===  FALSE){ 
+				//$this->load->view("Venta/create");
+			//}else{
 				
 				$estado= $this->Venta_model->add();
-				if( $estado  ){
+				
+				/*if( $estado  ){
 						//preparar mensaje json
 						$this->load->view("Plantillas/success",  array("title"=>"Registro guardado!", "message"=>"Haz registrado un comprobante de venta! "));
 						$this->load->view("Venta/go_back");
@@ -79,8 +79,8 @@ class Venta extends CI_Controller {
 					 //var_dump(  $photo_data); 
 					 $this->load->view("Plantillas/failure",  array("title"=>"Existen errores en el formulario!", "message"=>" Revise los campos." )   );
 					 $this->load->view("Venta/create");
-				 }
-			}
+				 }*/
+			//}
 		}		
 			
 	}

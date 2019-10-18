@@ -14,7 +14,7 @@ class Vehiculo extends CI_Controller {
 	public function index()
 	{
 		
-		$lista['lista'] = $this->db->get('Vehiculo')->result();
+		$lista['lista'] = $this->db->get('vehiculo')->result();
 		 
 		//var_dump( $lista);
 		$this->load->view('Vehiculo/index' ,  $lista);

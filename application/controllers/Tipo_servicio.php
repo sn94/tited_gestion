@@ -16,7 +16,7 @@ class Tipo_servicio extends CI_Controller {
 	public function index()
 	{
 		
-		$lista['lista'] = $this->db->get("Tipo_servicio")->result_object();
+		$lista['lista'] = $this->db->get("tipo_servicio")->result_object();
 		 
 		//var_dump( $lista);
 		$this->load->view('Tipo_servicio/index' ,  $lista);
@@ -26,7 +26,7 @@ class Tipo_servicio extends CI_Controller {
 	public function list()
 	{
 		
-		$lista['lista'] = $this->db->get("Tipo_servicio")->result_object();
+		$lista['lista'] = $this->db->get("tipo_servicio")->result_object();
 		//var_dump( $lista);
 		$this->load->view('Tipo_servicio/list' ,  $lista);
 	}
@@ -80,7 +80,7 @@ class Tipo_servicio extends CI_Controller {
 
 	 public function delete(){
 	 
-		$id= $this->input->get("Tiposervicio_id"); 
+		$id= $this->input->get("tiposervicio_id"); 
 		$sql= $this->db->delete('Tipo_servicio',  array('Tiposervicio_id' => $id)  ) ;
 		 $this->load->view("Plantillas/success",  array("title"=>"Registro borrado!", "message"=>"Haz borrado registro de un servicio"));
 		 //$this->load->view("Plantillas/failure",   array("title"=>"Oops!", "message"=>"Hubo un error al intentar borrar") );

@@ -6,26 +6,25 @@
   bottom: 10%;
   left:20%;
 }
-</style>
+</style> 
 
 
 
-<div class="header"> 
-          <h1 class="page-header" id="big-form-title">    Facturas </h1>
-					<ol class="breadcrumb" id="my-breadcrumb">
-					  <li><a href="#">Inicio</a></li>
-					  <li><a href="#">Comprobantes</a></li>
-					  <li class="active">Registrar comprobante de venta</li>
-					</ol> 						
-</div><!-- END header -->
+<div id="page-inner" class="container">
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" aria-current="page">Inicio</li>
+    <li class="breadcrumb-item" aria-current="page">Comprobantes</li>
+    <li class="breadcrumb-item active" aria-current="page">Factura de venta</li>
+  </ol>
+</nav>
 
 
-<div id="page-inner">
+    <h3>  Registrar Factura </h3> 
 
-<div class="card">
-                        <div class="card-action">  Registra Factura </div>
-                        <div class="card-content">
-    
+
+<div c  lass="container">   
 
 <?php  
 if(validation_errors()){ ?>
@@ -35,57 +34,86 @@ if(validation_errors()){ ?>
 <?php }  ?>
 
 
+ 
 
-<div id="venta-form" class="container m-0">
+<?php   echo form_open_multipart("venta/create", array("name"=>"venta-form", "method" => "post",  "onsubmit" => "enviar(event)"  ) )  ;?>
 
-<?php   echo form_open_multipart("venta/create", array("name"=>"venta-form","class"=>"col s12")  ) ;?>
+<!-- campos ocultos   codigo de personal --> 
+<input type="hidden"    name="personal_id" value="<?= $this->session->userdata("personal_id") ?>"  >  
 
-<div class="row">
-<!-- campos ocultos --> 
-<input type='hidden' name='proyecto_id'  value='<?= $proyecto_id ? $proyecto_id : set_value('proyecto_id') ?>'  />
-<input type="hidden" name="personal_id" value="<?= $this->session->userdata("personal_id") ?>"  >  
-
-
-<!-- fecha --> 
-<div class="input-field col s2"> <input name="venta_fecha"  value="<?= set_value('venta_fecha') ?>" type="text" id="venta_fecha" class="validate datepicker"><label for="venta_fecha"   >Fecha de factura:</label></div>
+<!-- ******************CABECERA ****************************-->
+<div class="form-row">
 <!-- numero de factura-->
-<div class="input-field col s2"> <input  name="venta_nro_fac"  value="<?= set_value('venta_nro_fac') ?>" type="text" class="validate"> <label for="venta_nro_fac">Nro. de Factura:</label></div>
-<!-- tipo de venta-->
-<div class="input-field col s2"><p><input name="venta_tipo"   type="radio"   id="r_cont" value="CO"><label for="r_cont"/>Contado</label></p><p><input name="venta_tipo"  type="radio" id="r_cred" value="CR"><label for="r_cred">Cr&eacute;dito</label></p></div>
-<!-- total factura-->
-<div class="input-field col s2"><input  name="venta_total"  value="<?= set_value('venta_total') ?>" type="text" class="validate"><label for="venta_total">Total:</label></div>
-</div><!-- END row -->
+<div class="form-group col col-md-2"> <label>Nro. de Factura:</label> <input class="form-control" disabled  name="Venta_nro_fac"  value="<?= set_value('venta_nro_fac') ?>" type="text" >
+</div>
+
+<!-- cliente -->  
+<div class="form-group col col-md-2 cliente-searcher">   <label for="Cliente_id"  >Cliente:</label>  <input  class="form-control"   type="text"  >  <input type="hidden"  name="Cliente_id" />
+</div>
+
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Venta_tipo" id="inlineRadio1" value="r_cont">
+  <label class="form-check-label" for="inlineRadio1">Contado</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="Venta_tipo" id="inlineRadio2" value="r_cre">
+  <label class="form-check-label" for="inlineRadio2">Cr&eacute;dito</label>
+</div>
+
+</div><!-- Fin form row-->
+ 
+
+
+<!-- ****************** DETALLE ****************************-->
+<div class="form-row">
+<!-- ITEM --> 
+<div class="form-group col col-md-2 item-searcher"><label for="Item_id" >Item:</label>  <input   type="text"  id="Item_des" class="form-control"   ><input type="hidden"  name="Item_id" /> 
+</div><!-- end row -->
+
+<div class="form-group col col-md-2"><label for="precio"  >Precio:</label> <input  class="form-control"   type="text" id="precio" />
+</div><!-- end row-->
+
+<div class="form-group col col-md-2"><label for="cant"  >Cantidad:</label> <input  class="form-control"   type="text" id="cant" onkeydown="add_item_to_table(event)" />
+</div><!-- end row-->
+
+</div><!-- end form row --> 
+
+
+
 
  
 
-<div class="row">
-<!-- foto-->
-<!-- foto-->
-<div class="file-field input-field col s4">
-      <div class="btn">
-        <span>Foto</span> <input type="file"   name="venta_foto"   onchange="show_loaded_image( event , '#venta_foto')"> 
-        </div>
-      <div class="file-path-wrapper">  <input class="file-path validate" type="text">  </div>
-</div>
 
-<div  class="input-field col s6" id="venta_foto" style="max-height: 100px; max-width: 100px;"></div>
-</div><!-- END row -->
 
+<div class="row">   
+
+<table id="detalle-factura" class="table table-striped table-bordered table-hover">
+<thead>
+<tr><th>Cod.</th><th>Descripci&oacuten</th><th>Precio</th><th>Cant.</th><th>Subt.</th><th></th></tr>
+</thead>
+<tbody>
+ </tbody>
+</table> 
+<input type="text" name="Venta_total" value="0" />
+</div><!-- end row-->
+
+ 
+ 
 <div class="row"><!-- boton de envio-->
-<div class="input-field col s4"><button type="button"  onclick= "beforeSend(  this)" class="waves-effect waves-light btn" >Guardar</button></div>
+<div class="input-field col s4">
+<button type="submit"   class="waves-effect waves-light btn" >Guardar</button>
+</div>
 </div><!-- END row     -->
 
 
 <?php  echo form_close() ;?>
 
-</div><!-- END ventaform -->
-
+ 
     
  
 	<div class="clearBoth"></div>
 
-  </div><!-- END CARD content -->
-
+   
 </div><!-- END CARD DIV -->
 
 <footer><p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p></footer>
@@ -99,22 +127,75 @@ if(validation_errors()){ ?>
 <script>
 
 
+/***********TABLAS ****************** */
+function remove_item(e){   
+  let del_it=  e.target.parentNode.parentNode  ;
+   e.target.parentNode.parentNode.parentNode.removeChild( del_it);
+  }
 
-//asegurar la carga de la foto
-function beforeSend(  context){
 
-if(  $( $(context).prop("form") ).find("input[type=file]").val()   )
-  load_page( venta.v_add_p, context);
-else{
+function add_item_to_table(e){
+  if( e.keyCode== 13){
+    e.preventDefault();
+    console.log("ENTER pressed");
   
-var toastContent = $('<h1>Cargue una imagen</h1>');
+    let pr_precio=  parseInt( document.querySelector("input[id=precio]").value);
+    let pr_desc=  document.querySelector("input[id=Item_des]").value;
+    let pr_id= document.querySelector("div.item-searcher input[name=Item_id]").value;
+    let pr_cant= e.target.value;
+    let subtotal= pr_precio * pr_cant;
+    //crear una nueva fila
+    let detalle_f= document.querySelector("table[id=detalle-factura] tbody");
+    let previous_conte= detalle_f.innerHTML;
+    let btn_minus= '<button type="button" class="btn btn-danger" onclick="remove_item(event)">(-)</button>';
+    let nueva_f= `<tr><td><input name='item_id[]' value='${ pr_id}'/></td><td>${pr_desc}</td><td><input name='item_precio[]' value='${pr_precio}'/></td><td><input name='item_cant[]' value='${pr_cant}'/></td><td><input value='${ subtotal}'/></td><td>${btn_minus}</td> </tr>`;
+    detalle_f.innerHTML=  previous_conte + nueva_f;
 
-Materialize.toast( toastContent, 2000);
-} 
-
+    //Actualizar total
+    let total= parseInt( document.querySelector("input[name=Venta_total]").value) + subtotal;
+    document.querySelector("input[name=Venta_total]").value= total;
+  }
 }
+ 
+/***************ENVIO DE FORMULARIO********* */
+function enviar(e){
+  e.preventDefault();  
+ send_http_post(  e.target, div="#page-wrapper", extra={ "alert" : "Guardar factura?"})
+} 
+ 
+
 
    $( function () {
+
+    //Autocompletado
+    let objClientes= {     
+        recurso: "cliente/list_json",
+        inputSearcher: ".cliente-searcher",
+        callBack:   ( ar)=>    ar.Empresa_id+"-"+ar.Empresa_razon ,
+        list_name: "clientes_list"
+    };
+    S_autocomplete._autocomplete_( objClientes);
+
+
+    let objItems= {    
+        recurso: "item/list_json",
+        inputSearcher: ".item-searcher",
+        callBack:   ( ar)=>    ar.id+"-"+ar.des,
+        list_name: "items_list",
+        do_after_all: function(ar){ 
+          console.log(  ar );
+          // document.querySelector("input[id=precio]").value=  S_autocomplete['items_list'][ ar].precio ;
+        }
+      };
+    S_autocomplete._autocomplete_( objItems);
+
+
+
+
+    //$('.datepicker').pickadate( setting_date ) ;
+
+
+
 
  /*    //asignar fecha actual
     $("form[name=venta-form] input[name=venta_fecha_reg]").val( 
@@ -124,9 +205,10 @@ Materialize.toast( toastContent, 2000);
        $("form[name=venta-form] input[name=venta_hora_reg]").val( 
         new Date().getHours()+":"+ new Date().getMinutes()+":"+ new Date().getSeconds()  ) ;
 */
-    $('.datepicker').pickadate( setting_date ) ;
+    
 
 }); 
   
   
   </script>
+ 
